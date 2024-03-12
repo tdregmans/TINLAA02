@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<template>
+		<name x="5" y="5">sluis</name>
+		<location id="id0" x="0" y="0">
+		</location>
+		<init ref="id0"/>
+	</template>
+	<system>system sluis;
+</system>
+	<queries>
+		<query>
+			<formula/>
+			<comment/>
+		</query>
+	</queries>
+</nta>
