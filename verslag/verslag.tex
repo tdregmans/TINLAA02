@@ -3,7 +3,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass{article}
-\usepackage{graphicx}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage[dutch]{babel}
 
@@ -11,6 +10,65 @@
 
 %Includes "References" in the table of contents
 \usepackage[nottoc]{tocbibind}
+\usepackage{imakeidx} % package om indices te maken
+\usepackage{amsmath} % package voor formules
+\usepackage{graphicx} % package voor het invoegen van images
+\usepackage{listings} % package voor het invoegen van listings (bron code)
+\usepackage[colorlinks=true, allcolors=blue]{hyperref} % package voor hyperlinks (intern als extern)
+\usepackage{xcolor} % package voor standaard kleuren
+\usepackage{parskip} % package voor het formateren van paragraven
+\usepackage{multirow} % package voor formateren tabellen --- \multicolumn{x}{|c|}{tekst}
+\usepackage{ulem} % package om zinnen door te strepen met \sout{}
+\usepackage[many]{tcolorbox} % for COLORED BOXES (tikz and xcolor included)
+
+% biliotheek packages
+\usepackage[backend=biber, style=alphabetic, sorting=nty]{biblatex} % package voor bibliotheek (bronnen)
+\usepackage{csquotes} % ondersteund de biblatex package voor optimale weergave
+\addbibresource{references.bib} % voeg eigen bibliotheek toe
+
+% definieer kleuren: {naam}{kleurstijl}{waardes}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% definieer stijl van lijsten
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle} % verander standaard stijl naar eigen stijl
+
+% stijl voor box
+\newtcolorbox{boxA}{
+    fontupper = \bf,
+    boxrule = 1.5pt,
+    colframe = black % frame color
+}
+
+% stijl voor hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    }
+\urlstyle{same}
+
 
 \begin{document}
 
