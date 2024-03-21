@@ -7,7 +7,105 @@
 		</location>
 		<init ref="id0"/>
 	</template>
-	<system>system sluis;
+	<template>
+		<name>sensor</name>
+		<location id="id1" x="0" y="0">
+			<name x="-42" y="-34">laag</name>
+		</location>
+		<location id="id2" x="136" y="0">
+			<name x="144" y="-34">hoog</name>
+		</location>
+		<init ref="id1"/>
+		<transition id="id3">
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<nail x="102" y="-68"/>
+			<nail x="34" y="-68"/>
+		</transition>
+		<transition id="id4">
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<nail x="34" y="68"/>
+			<nail x="102" y="68"/>
+		</transition>
+	</template>
+	<template>
+		<name>sluisdeur</name>
+		<location id="id5" x="0" y="0">
+			<name x="-76" y="-34">gesloten</name>
+		</location>
+		<location id="id6" x="102" y="-102">
+			<name x="102" y="-136">openend</name>
+		</location>
+		<location id="id7" x="204" y="0">
+			<name x="212" y="-34">geopend</name>
+		</location>
+		<location id="id8" x="102" y="102">
+			<name x="93" y="119">sluitend</name>
+		</location>
+		<init ref="id5"/>
+		<transition id="id9">
+			<source ref="id8"/>
+			<target ref="id5"/>
+		</transition>
+		<transition id="id10">
+			<source ref="id5"/>
+			<target ref="id6"/>
+		</transition>
+		<transition id="id11">
+			<source ref="id7"/>
+			<target ref="id8"/>
+		</transition>
+		<transition id="id12">
+			<source ref="id6"/>
+			<target ref="id7"/>
+		</transition>
+	</template>
+	<template>
+		<name>vaarsein</name>
+		<location id="id13" x="0" y="0">
+			<name x="-42" y="-34">rood</name>
+		</location>
+		<location id="id14" x="136" y="0">
+			<name x="144" y="-34">groen</name>
+		</location>
+		<init ref="id13"/>
+		<transition id="id15">
+			<source ref="id14"/>
+			<target ref="id13"/>
+			<nail x="102" y="68"/>
+			<nail x="34" y="68"/>
+		</transition>
+		<transition id="id16">
+			<source ref="id13"/>
+			<target ref="id14"/>
+			<nail x="34" y="-68"/>
+			<nail x="102" y="-68"/>
+		</transition>
+	</template>
+	<template>
+		<name>sluisluik</name>
+		<location id="id17" x="0" y="0">
+			<name x="-76" y="-34">gesloten</name>
+		</location>
+		<location id="id18" x="136" y="0">
+			<name x="144" y="-34">geopend</name>
+		</location>
+		<init ref="id17"/>
+		<transition id="id19">
+			<source ref="id18"/>
+			<target ref="id17"/>
+			<nail x="102" y="68"/>
+			<nail x="34" y="68"/>
+		</transition>
+		<transition id="id20">
+			<source ref="id17"/>
+			<target ref="id18"/>
+			<nail x="34" y="-68"/>
+			<nail x="102" y="-68"/>
+		</transition>
+	</template>
+	<system>system sluis, sensor, sluisdeur, vaarsein, sluisluik;
 </system>
 	<queries>
 		<query>
