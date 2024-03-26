@@ -9,11 +9,13 @@ chan sluitDeur[sluisdeur_id];
 chan deurGeopend[sluisdeur_id];
 chan deurGesloten[sluisdeur_id];
 
-const int laag = 0;
-const int hoog = 1;</declaration>
+const int LAAG = 0;
+const int HOOG = 1;
+
+const int DELAY_WATERBEWEGING = 0;</declaration>
 	<template>
 		<name x="5" y="5">sluis</name>
-		<declaration>clock w;
+		<declaration>clock x;
 
 bool reverse = false;</declaration>
 		<location id="id0" x="204" y="102">
@@ -35,7 +37,7 @@ seinen op rood.</label>
 		</location>
 		<location id="id5" x="204" y="578">
 			<name x="204" y="595">sluiswaterInBeweging</name>
-			<label kind="invariant" x="204" y="612">w&lt;=10</label>
+			<label kind="invariant" x="204" y="612">x&lt;=DELAY_WATERBEWEGING</label>
 		</location>
 		<location id="id6" x="-272" y="578">
 			<name x="-416" y="595">klaarMetBeweging</name>
@@ -53,14 +55,15 @@ seinen op rood.</label>
 		<transition id="id10">
 			<source ref="id5"/>
 			<target ref="id4"/>
-			<label kind="guard" x="263" y="484">reverse==true</label>
+			<label kind="guard" x="263" y="484">x&gt;=DELAY_WATERBEWEGING &amp;&amp; reverse==true</label>
 			<nail x="238" y="510"/>
 			<nail x="578" y="510"/>
 		</transition>
 		<transition id="id11">
 			<source ref="id6"/>
 			<target ref="id5"/>
-			<label kind="guard" x="51" y="484">reverse==true</label>
+			<label kind="guard" x="-34" y="484">reverse==true</label>
+			<label kind="assignment" x="-102" y="484">x=0</label>
 			<nail x="-170" y="510"/>
 			<nail x="170" y="510"/>
 		</transition>
@@ -124,63 +127,64 @@ seinen op rood.</label>
 			<source ref="id9"/>
 			<target ref="id0"/>
 			<label kind="guard" x="-8" y="-136">reverse==false</label>
-			<label kind="synchronisation" x="-8" y="-161">deurGesloten[hoog]?</label>
+			<label kind="synchronisation" x="-8" y="-161">deurGesloten[HOOG]?</label>
 			<nail x="102" y="-136"/>
 		</transition>
 		<transition id="id21">
 			<source ref="id8"/>
 			<target ref="id9"/>
 			<label kind="guard" x="-374" y="-68">reverse==false</label>
-			<label kind="synchronisation" x="-391" y="-93">sluitDeur[hoog]!</label>
+			<label kind="synchronisation" x="-391" y="-93">sluitDeur[HOOG]!</label>
 			<nail x="-238" y="-136"/>
 		</transition>
 		<transition id="id22">
 			<source ref="id7"/>
 			<target ref="id8"/>
 			<label kind="guard" x="-399" y="204">reverse==false</label>
-			<label kind="synchronisation" x="-433" y="187">deurGeopend[hoog]?</label>
+			<label kind="synchronisation" x="-433" y="187">deurGeopend[HOOG]?</label>
 		</transition>
 		<transition id="id23">
 			<source ref="id6"/>
 			<target ref="id7"/>
 			<label kind="guard" x="-399" y="442">reverse==false</label>
-			<label kind="synchronisation" x="-408" y="425">openDeur[hoog]!</label>
+			<label kind="synchronisation" x="-408" y="425">openDeur[HOOG]!</label>
 		</transition>
 		<transition id="id24">
 			<source ref="id5"/>
 			<target ref="id6"/>
-			<label kind="guard" x="-119" y="586">w&gt;=10 &amp;&amp; reverse==false</label>
+			<label kind="guard" x="-170" y="586">x&gt;=DELAY_WATERBEWEGING &amp;&amp; reverse==false</label>
 		</transition>
 		<transition id="id25">
 			<source ref="id4"/>
 			<target ref="id5"/>
 			<label kind="guard" x="408" y="578">reverse==false</label>
-			<label kind="assignment" x="416" y="552">w=0</label>
+			<label kind="assignment" x="416" y="552">x=0</label>
 		</transition>
 		<transition id="id26">
 			<source ref="id3"/>
 			<target ref="id4"/>
 			<label kind="guard" x="688" y="442">reverse==false</label>
-			<label kind="synchronisation" x="688" y="425">deurGesloten[laag]?</label>
+			<label kind="synchronisation" x="688" y="425">deurGesloten[LAAG]?</label>
 		</transition>
 		<transition id="id27">
 			<source ref="id2"/>
 			<target ref="id3"/>
 			<label kind="guard" x="688" y="204">reverse==false</label>
-			<label kind="synchronisation" x="688" y="187">sluitDeur[laag]!</label>
+			<label kind="synchronisation" x="688" y="187">sluitDeur[LAAG]!</label>
 		</transition>
 		<transition id="id28">
 			<source ref="id1"/>
 			<target ref="id2"/>
 			<label kind="guard" x="527" y="-136">reverse==false</label>
-			<label kind="synchronisation" x="518" y="-161">deurGeopend[laag]?</label>
+			<label kind="synchronisation" x="518" y="-161">deurGeopend[LAAG]?</label>
 			<nail x="646" y="-136"/>
 		</transition>
 		<transition id="id29">
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="synchronisation" x="306" y="-161">openDeur[laag]!</label>
-			<label kind="assignment" x="306" y="-136">reverse=false</label>
+			<label kind="synchronisation" x="306" y="-161">openDeur[LAAG]!</label>
+			<label kind="assignment" x="306" y="-136">reverse=false,
+x=0</label>
 			<nail x="306" y="-136"/>
 		</transition>
 	</template>
@@ -238,7 +242,7 @@ seinen op rood.</label>
 		<query>
 			<formula>A[] not deadlock</formula>
 			<comment>check for deadlock</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-26 15:00:29 +0100">
+			<result outcome="success" type="quality" timestamp="2024-03-26 22:55:39 +0100">
 			</result>
 		</query>
 		<query>
