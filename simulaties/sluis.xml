@@ -1,116 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
 <nta>
+	<declaration>const int AANTAL_SLUISDEUREN = 2;
+typedef int[0,AANTAL_SLUISDEUREN - 1] sluisdeur_id;
+
+chan openDeur[sluisdeur_id];
+chan sluitDeur[sluisdeur_id];
+chan deurGeopend[sluisdeur_id];
+chan deurGesloten[sluisdeur_id];
+
+</declaration>
 	<template>
-		<name x="5" y="5">sluis</name>
+		<name x="5" y="5">Controller</name>
+		<declaration>clock w;</declaration>
 		<location id="id0" x="0" y="0">
+			<name x="-25" y="-34">allesdicht</name>
+		</location>
+		<location id="id1" x="170" y="0">
+			<name x="76" y="-34">wachtenOpDeurLaagOpen</name>
+		</location>
+		<location id="id2" x="340" y="0">
+			<name x="280" y="-34">klaarVoorInvaart</name>
+		</location>
+		<location id="id3" x="510" y="0">
+			<name x="433" y="-34">wachtenOpDeurLaagSluiten</name>
+		</location>
+		<location id="id4" x="511" y="102">
+			<name x="527" y="93">klaarVoorOmhoog</name>
+		</location>
+		<location id="id5" x="510" y="204">
+			<name x="527" y="195">omhoogGaand</name>
+			<label kind="invariant" x="535" y="212">w &lt;= 10</label>
+		</location>
+		<location id="id6" x="340" y="204">
+			<name x="330" y="170">hoogWater</name>
+		</location>
+		<location id="id7" x="170" y="204">
+			<name x="85" y="170">wachtenOpDeurHoogOpen</name>
+		</location>
+		<location id="id8" x="0" y="204">
+			<name x="-68" y="170">klaarVoorUitvaart</name>
+		</location>
+		<location id="id9" x="-102" y="102">
+			<name x="-314" y="85">wachtenOpDeurHoogSluiten</name>
 		</location>
 		<init ref="id0"/>
-	</template>
-	<template>
-		<name>sensor</name>
-		<location id="id1" x="0" y="0">
-			<name x="-42" y="-34">laag</name>
-		</location>
-		<location id="id2" x="136" y="0">
-			<name x="144" y="-34">hoog</name>
-		</location>
-		<init ref="id1"/>
-		<transition id="id3">
-			<source ref="id2"/>
-			<target ref="id1"/>
-			<nail x="102" y="-68"/>
-			<nail x="34" y="-68"/>
-		</transition>
-		<transition id="id4">
-			<source ref="id1"/>
-			<target ref="id2"/>
-			<nail x="34" y="68"/>
-			<nail x="102" y="68"/>
-		</transition>
-	</template>
-	<template>
-		<name>sluisdeur</name>
-		<location id="id5" x="0" y="0">
-			<name x="-76" y="-34">gesloten</name>
-		</location>
-		<location id="id6" x="102" y="-102">
-			<name x="102" y="-136">openend</name>
-		</location>
-		<location id="id7" x="204" y="0">
-			<name x="212" y="-34">geopend</name>
-		</location>
-		<location id="id8" x="102" y="102">
-			<name x="93" y="119">sluitend</name>
-		</location>
-		<init ref="id5"/>
-		<transition id="id9">
-			<source ref="id8"/>
-			<target ref="id5"/>
-		</transition>
 		<transition id="id10">
-			<source ref="id5"/>
-			<target ref="id6"/>
+			<source ref="id9"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-187" y="42">deurGesloten[1]?</label>
 		</transition>
 		<transition id="id11">
-			<source ref="id7"/>
-			<target ref="id8"/>
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="-161" y="153">sluitDeur[1]!</label>
 		</transition>
 		<transition id="id12">
+			<source ref="id7"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="34" y="204">deurGeopend[1]?</label>
+		</transition>
+		<transition id="id13">
 			<source ref="id6"/>
 			<target ref="id7"/>
+			<label kind="synchronisation" x="204" y="204">openDeur[1]!</label>
 		</transition>
-	</template>
-	<template>
-		<name>vaarsein</name>
-		<location id="id13" x="0" y="0">
-			<name x="-42" y="-34">rood</name>
-		</location>
-		<location id="id14" x="136" y="0">
-			<name x="144" y="-34">groen</name>
-		</location>
-		<init ref="id13"/>
+		<transition id="id14">
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="guard" x="391" y="212">w &gt;= 10</label>
+		</transition>
 		<transition id="id15">
-			<source ref="id14"/>
-			<target ref="id13"/>
-			<nail x="102" y="68"/>
-			<nail x="34" y="68"/>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="assignment" x="518" y="144">w = 0</label>
 		</transition>
 		<transition id="id16">
-			<source ref="id13"/>
-			<target ref="id14"/>
-			<nail x="34" y="-68"/>
-			<nail x="102" y="-68"/>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="510" y="34">deurGesloten[0]?</label>
+		</transition>
+		<transition id="id17">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="365" y="0">sluitDeur[0]!</label>
+		</transition>
+		<transition id="id18">
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="187" y="0">deurGeopend[0]?</label>
+		</transition>
+		<transition id="id19">
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="25" y="0">openDeur[0]!</label>
 		</transition>
 	</template>
 	<template>
-		<name>sluisluik</name>
-		<location id="id17" x="0" y="0">
-			<name x="-76" y="-34">gesloten</name>
+		<name>Deur</name>
+		<parameter>sluisdeur_id i</parameter>
+		<declaration>clock x;</declaration>
+		<location id="id20" x="-170" y="-68">
+			<name x="-238" y="-59">gesloten</name>
 		</location>
-		<location id="id18" x="136" y="0">
-			<name x="144" y="-34">geopend</name>
+		<location id="id21" x="0" y="-68">
+			<name x="0" y="-102">open</name>
 		</location>
-		<init ref="id17"/>
-		<transition id="id19">
-			<source ref="id18"/>
-			<target ref="id17"/>
-			<nail x="102" y="68"/>
-			<nail x="34" y="68"/>
+		<location id="id22" x="-85" y="-136">
+			<name x="-95" y="-170">aanHetOpenen</name>
+			<label kind="invariant" x="-93" y="-187">x &lt;= 5</label>
+		</location>
+		<location id="id23" x="-86" y="-1">
+			<name x="-128" y="16">aanHetSluiten</name>
+			<label kind="invariant" x="-110" y="34">x &lt;= 5</label>
+		</location>
+		<init ref="id20"/>
+		<transition id="id24">
+			<source ref="id23"/>
+			<target ref="id20"/>
+			<label kind="guard" x="-195" y="-8">x &gt;= 5</label>
+			<label kind="synchronisation" x="-246" y="-25">deurGesloten[i]!</label>
 		</transition>
-		<transition id="id20">
-			<source ref="id17"/>
-			<target ref="id18"/>
-			<nail x="34" y="-68"/>
-			<nail x="102" y="-68"/>
+		<transition id="id25">
+			<source ref="id21"/>
+			<target ref="id23"/>
+			<label kind="synchronisation" x="-25" y="-51">sluitDeur[i]?</label>
+			<label kind="assignment" x="-34" y="-34">x = 0</label>
+		</transition>
+		<transition id="id26">
+			<source ref="id22"/>
+			<target ref="id21"/>
+			<label kind="guard" x="-25" y="-136">x&gt;=5</label>
+			<label kind="synchronisation" x="-51" y="-127">deurGeopend[i]!</label>
+		</transition>
+		<transition id="id27">
+			<source ref="id20"/>
+			<target ref="id22"/>
+			<label kind="synchronisation" x="-229" y="-119">openDeur[i]?</label>
+			<label kind="assignment" x="-212" y="-102">x = 0</label>
 		</transition>
 	</template>
-	<system>system sluis, sensor, sluisdeur, vaarsein, sluisluik;
+	<system>system Controller,Deur;
 </system>
 	<queries>
 		<query>
-			<formula/>
+			<formula>A[] not deadlock</formula>
 			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-03-26 15:00:29 +0100">
+			</result>
 		</query>
 	</queries>
 </nta>
