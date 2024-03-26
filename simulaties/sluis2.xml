@@ -35,99 +35,128 @@ int aantalSchepenInSluis = 0;
 const int maxAantalSchepenInSluis = 5;
 
 clock x;</declaration>
-		<location id="id0" x="34" y="-68">
+		<location id="id0" x="-323" y="-119">
 		</location>
-		<location id="id1" x="238" y="-68">
+		<location id="id1" x="-119" y="-119">
 		</location>
-		<location id="id2" x="442" y="-68">
+		<location id="id2" x="85" y="-119">
 		</location>
-		<location id="id3" x="442" y="102">
+		<location id="id3" x="85" y="51">
 		</location>
-		<location id="id4" x="442" y="212">
+		<location id="id4" x="85" y="161">
 		</location>
-		<location id="id5" x="442" y="391">
+		<location id="id5" x="85" y="340">
 		</location>
-		<location id="id6" x="442" y="493">
+		<location id="id6" x="85" y="442">
 		</location>
-		<location id="id7" x="442" y="17">
+		<location id="id7" x="85" y="-34">
 		</location>
-		<location id="id8" x="442" y="297">
+		<location id="id8" x="85" y="246">
 		</location>
-		<transition id="id9">
-			<source ref="id8"/>
-			<target ref="id5"/>
-			<label kind="synchronisation" x="442" y="327">sluisdeurOpenen[1]!</label>
-		</transition>
-		<transition id="id10">
-			<source ref="id4"/>
-			<target ref="id8"/>
-			<label kind="synchronisation" x="442" y="237">sluisluikSluiten[1]!</label>
-		</transition>
-		<transition id="id11">
-			<source ref="id7"/>
-			<target ref="id3"/>
-			<label kind="synchronisation" x="442" y="42">sluisdeurSluiten[0]!</label>
-		</transition>
-		<transition id="id12">
-			<source ref="id2"/>
-			<target ref="id7"/>
-			<label kind="synchronisation" x="442" y="-25">vaarseinDeactiveren[0]!</label>
-		</transition>
+		<location id="id9" x="-221" y="442">
+		</location>
+		<location id="id10" x="850" y="-68">
+			<name x="840" y="-102">start</name>
+		</location>
+		<location id="id11" x="1088" y="-68">
+		</location>
+		<location id="id12" x="612" y="-68">
+		</location>
+		<init ref="id10"/>
 		<transition id="id13">
-			<source ref="id5"/>
-			<target ref="id6"/>
-			<label kind="synchronisation" x="442" y="425">vaarseinActiveren[1]!</label>
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="902" y="-153">sensorGeactiveerd[1]?</label>
+			<nail x="884" y="-136"/>
+			<nail x="1054" y="-136"/>
 		</transition>
 		<transition id="id14">
-			<source ref="id3"/>
-			<target ref="id4"/>
-			<label kind="synchronisation" x="442" y="140">sluisluikOpenen[1]!</label>
+			<source ref="id10"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="646" y="-161">sensorGeactiveerd[0]?</label>
+			<nail x="816" y="-136"/>
+			<nail x="646" y="-136"/>
 		</transition>
 		<transition id="id15">
-			<source ref="id2"/>
-			<target ref="id2"/>
-			<label kind="assignment" x="552" y="-68">aantalSchepenStroomafwaarts -= 1
-aantalSchepenInSluis += 1</label>
-			<nail x="535" y="-68"/>
-			<nail x="535" y="0"/>
+			<source ref="id6"/>
+			<target ref="id9"/>
+			<label kind="assignment" x="-170" y="408">aantalSchepenInSluis -=1</label>
 		</transition>
 		<transition id="id16">
-			<source ref="id1"/>
-			<target ref="id2"/>
-			<label kind="assignment" x="263" y="-161">vaarseinActiveren[0]!</label>
-			<nail x="238" y="-76"/>
-			<nail x="272" y="-136"/>
-			<nail x="408" y="-136"/>
+			<source ref="id8"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="85" y="276">sluisdeurOpenen[1]!</label>
 		</transition>
 		<transition id="id17">
+			<source ref="id4"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="85" y="186">sluisluikSluiten[1]!</label>
+		</transition>
+		<transition id="id18">
+			<source ref="id7"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="85" y="-9">sluisdeurSluiten[0]!</label>
+		</transition>
+		<transition id="id19">
+			<source ref="id2"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="85" y="-76">vaarseinDeactiveren[0]!</label>
+		</transition>
+		<transition id="id20">
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="85" y="374">vaarseinActiveren[1]!</label>
+		</transition>
+		<transition id="id21">
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="85" y="89">sluisluikOpenen[1]!</label>
+		</transition>
+		<transition id="id22">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="195" y="-119">aantalSchepenStroomafwaarts -= 1
+aantalSchepenInSluis += 1</label>
+			<nail x="178" y="-119"/>
+			<nail x="178" y="-51"/>
+		</transition>
+		<transition id="id23">
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="-94" y="-212">vaarseinActiveren[0]!</label>
+			<nail x="-119" y="-127"/>
+			<nail x="-85" y="-187"/>
+			<nail x="51" y="-187"/>
+		</transition>
+		<transition id="id24">
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="synchronisation" x="51" y="-161">sensorGeactiveerd[0]?</label>
-			<label kind="assignment" x="51" y="-178">aantalSchepenStroomafwaarts += 1</label>
-			<nail x="68" y="-136"/>
-			<nail x="204" y="-136"/>
+			<label kind="synchronisation" x="-306" y="-212">sensorGeactiveerd[0]?</label>
+			<label kind="assignment" x="-306" y="-229">aantalSchepenStroomafwaarts += 1</label>
+			<nail x="-289" y="-187"/>
+			<nail x="-153" y="-187"/>
 		</transition>
 	</template>
 	<template>
 		<name>sensor</name>
 		<parameter>sensor_id i</parameter>
-		<location id="id18" x="0" y="0">
+		<location id="id25" x="0" y="0">
 			<name x="-42" y="-34">laag</name>
 		</location>
-		<location id="id19" x="136" y="0">
+		<location id="id26" x="136" y="0">
 			<name x="144" y="-34">hoog</name>
 		</location>
-		<init ref="id18"/>
-		<transition id="id20">
-			<source ref="id19"/>
-			<target ref="id18"/>
+		<init ref="id25"/>
+		<transition id="id27">
+			<source ref="id26"/>
+			<target ref="id25"/>
 			<label kind="synchronisation" x="-17" y="-93">sensorGedeactiveerd[i]!</label>
 			<nail x="102" y="-68"/>
 			<nail x="34" y="-68"/>
 		</transition>
-		<transition id="id21">
-			<source ref="id18"/>
-			<target ref="id19"/>
+		<transition id="id28">
+			<source ref="id25"/>
+			<target ref="id26"/>
 			<label kind="synchronisation" x="0" y="68">sensorGeactiveerd[i]!</label>
 			<nail x="34" y="68"/>
 			<nail x="102" y="68"/>
@@ -136,23 +165,23 @@ aantalSchepenInSluis += 1</label>
 	<template>
 		<name>sluisdeur</name>
 		<parameter>sluisdeur_id i</parameter>
-		<location id="id22" x="0" y="0">
+		<location id="id29" x="0" y="0">
 			<name x="-76" y="-34">gesloten</name>
 		</location>
-		<location id="id23" x="204" y="0">
+		<location id="id30" x="204" y="0">
 			<name x="212" y="-34">geopend</name>
 		</location>
-		<init ref="id22"/>
-		<transition id="id24">
-			<source ref="id23"/>
-			<target ref="id22"/>
+		<init ref="id29"/>
+		<transition id="id31">
+			<source ref="id30"/>
+			<target ref="id29"/>
 			<label kind="synchronisation" x="34" y="76">sluisdeurSluiten[i]?</label>
 			<nail x="170" y="68"/>
 			<nail x="34" y="68"/>
 		</transition>
-		<transition id="id25">
-			<source ref="id22"/>
-			<target ref="id23"/>
+		<transition id="id32">
+			<source ref="id29"/>
+			<target ref="id30"/>
 			<label kind="synchronisation" x="25" y="-93">sluisdeurOpenen[i]?</label>
 			<nail x="34" y="-68"/>
 			<nail x="170" y="-68"/>
@@ -161,23 +190,23 @@ aantalSchepenInSluis += 1</label>
 	<template>
 		<name>vaarsein</name>
 		<parameter>vaarsein_id i</parameter>
-		<location id="id26" x="0" y="0">
+		<location id="id33" x="0" y="0">
 			<name x="-42" y="-34">rood</name>
 		</location>
-		<location id="id27" x="136" y="0">
+		<location id="id34" x="136" y="0">
 			<name x="144" y="-34">groen</name>
 		</location>
-		<init ref="id26"/>
-		<transition id="id28">
-			<source ref="id27"/>
-			<target ref="id26"/>
+		<init ref="id33"/>
+		<transition id="id35">
+			<source ref="id34"/>
+			<target ref="id33"/>
 			<label kind="synchronisation" x="-8" y="76">vaarseinDeactiveren[i]?</label>
 			<nail x="102" y="68"/>
 			<nail x="34" y="68"/>
 		</transition>
-		<transition id="id29">
-			<source ref="id26"/>
-			<target ref="id27"/>
+		<transition id="id36">
+			<source ref="id33"/>
+			<target ref="id34"/>
 			<label kind="synchronisation" x="-8" y="-93">vaarseinActiveren[i]?</label>
 			<nail x="34" y="-68"/>
 			<nail x="102" y="-68"/>
@@ -186,23 +215,23 @@ aantalSchepenInSluis += 1</label>
 	<template>
 		<name>sluisluik</name>
 		<parameter>sluisluik_id i</parameter>
-		<location id="id30" x="0" y="0">
+		<location id="id37" x="0" y="0">
 			<name x="-76" y="-34">gesloten</name>
 		</location>
-		<location id="id31" x="136" y="0">
+		<location id="id38" x="136" y="0">
 			<name x="144" y="-34">geopend</name>
 		</location>
-		<init ref="id30"/>
-		<transition id="id32">
-			<source ref="id31"/>
-			<target ref="id30"/>
+		<init ref="id37"/>
+		<transition id="id39">
+			<source ref="id38"/>
+			<target ref="id37"/>
 			<label kind="synchronisation" x="-8" y="76">sluisluikSluiten[i]?</label>
 			<nail x="102" y="68"/>
 			<nail x="34" y="68"/>
 		</transition>
-		<transition id="id33">
-			<source ref="id30"/>
-			<target ref="id31"/>
+		<transition id="id40">
+			<source ref="id37"/>
+			<target ref="id38"/>
 			<label kind="synchronisation" x="0" y="-93">sluisluikOpenen[i]?</label>
 			<nail x="34" y="-68"/>
 			<nail x="102" y="-68"/>
