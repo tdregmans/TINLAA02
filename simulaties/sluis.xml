@@ -195,8 +195,8 @@ en seinen op rood.</label>
 		<transition id="id28">
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="guard" x="527" y="-136">reverse==false</label>
-			<label kind="synchronisation" x="518" y="-161">deurGeopend[LAAG]?</label>
+			<label kind="guard" x="663" y="-68">reverse==false</label>
+			<label kind="synchronisation" x="663" y="-93">deurGeopend[LAAG]?</label>
 			<nail x="646" y="-136"/>
 		</transition>
 		<transition id="id29">
