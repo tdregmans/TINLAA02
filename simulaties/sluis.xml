@@ -9,63 +9,66 @@ chan sluitDeur[sluisdeur_id];
 chan deurGeopend[sluisdeur_id];
 chan deurGesloten[sluisdeur_id];
 
-</declaration>
+const int laag = 0;
+const int hoog = 1;</declaration>
 	<template>
 		<name x="5" y="5">sluis</name>
 		<declaration>clock w;</declaration>
 		<location id="id0" x="204" y="102">
-			<name x="221" y="68">allesdicht</name>
+			<name x="221" y="68">start</name>
+			<label kind="comments" x="221" y="93">Alles gesloten, 
+seinen op rood.</label>
 		</location>
 		<location id="id1" x="374" y="-68">
-			<name x="382" y="-110">wachtenOpDeurLaagOpen</name>
+			<name x="382" y="-110">deurLaagOpenend</name>
 		</location>
 		<location id="id2" x="544" y="102">
-			<name x="552" y="68">klaarVoorInvaart</name>
+			<name x="552" y="68">klaarVoorSchipLaag</name>
 		</location>
 		<location id="id3" x="544" y="272">
-			<name x="552" y="238">wachtenOpDeurLaagSluiten</name>
+			<name x="552" y="238">deurLaagSluitend</name>
 		</location>
 		<location id="id4" x="544" y="442">
-			<name x="552" y="408">klaarVoorOmhoog</name>
+			<name x="552" y="408">klaarVoorBeweging</name>
 		</location>
 		<location id="id5" x="204" y="442">
-			<name x="212" y="399">omhoogGaand</name>
-			<label kind="invariant" x="212" y="416">w &lt;= 10</label>
+			<name x="212" y="399">sluiswaterInBeweging</name>
+			<label kind="invariant" x="212" y="416">w&lt;=10</label>
 		</location>
 		<location id="id6" x="-136" y="442">
-			<name x="-127" y="408">hoogWater</name>
+			<name x="-127" y="408">klaarMetBeweging</name>
 		</location>
 		<location id="id7" x="-136" y="272">
-			<name x="-127" y="238">wachtenOpDeurHoogOpen</name>
+			<name x="-127" y="238">deurHoogOpenend</name>
 		</location>
 		<location id="id8" x="-136" y="102">
-			<name x="-127" y="68">klaarVoorUitvaart</name>
+			<name x="-127" y="68">klaarVoorSchipHoog</name>
 		</location>
 		<location id="id9" x="34" y="-68">
-			<name x="42" y="-110">wachtenOpDeurHoogSluiten</name>
+			<name x="42" y="-110">deurHoogSluitend</name>
 		</location>
 		<init ref="id0"/>
 		<transition id="id10">
 			<source ref="id9"/>
 			<target ref="id0"/>
-			<label kind="synchronisation" x="42" y="-93">deurGesloten[1]?</label>
+			<label kind="synchronisation" x="42" y="-93">deurGesloten[hoog]?</label>
 			<nail x="170" y="-68"/>
 		</transition>
 		<transition id="id11">
 			<source ref="id8"/>
 			<target ref="id9"/>
-			<label kind="synchronisation" x="-136" y="-93">sluitDeur[1]!</label>
+			<label kind="synchronisation" x="-136" y="-93">sluitDeur[hoog]!</label>
 			<nail x="-102" y="-68"/>
 		</transition>
 		<transition id="id12">
 			<source ref="id7"/>
 			<target ref="id8"/>
-			<label kind="synchronisation" x="-127" y="161">deurGeopend[1]?</label>
+			<label kind="synchronisation" x="-127" y="161">deurGeopend[hoog]?</label>
 		</transition>
 		<transition id="id13">
 			<source ref="id6"/>
 			<target ref="id7"/>
-			<label kind="synchronisation" x="-127" y="331">openDeur[1]!</label>
+			<label kind="synchronisation" x="-127" y="331">openDeur[hoog]!</label>
 		</transition>
 		<transition id="id14">
 			<source ref="id5"/>
@@ -80,23 +83,23 @@ chan deurGesloten[sluisdeur_id];
 		<transition id="id16">
 			<source ref="id3"/>
 			<target ref="id4"/>
-			<label kind="synchronisation" x="552" y="331">deurGesloten[0]?</label>
+			<label kind="synchronisation" x="552" y="331">deurGesloten[laag]?</label>
 		</transition>
 		<transition id="id17">
 			<source ref="id2"/>
 			<target ref="id3"/>
-			<label kind="synchronisation" x="552" y="161">sluitDeur[0]!</label>
+			<label kind="synchronisation" x="552" y="161">sluitDeur[laag]!</label>
 		</transition>
 		<transition id="id18">
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="synchronisation" x="425" y="-93">deurGeopend[0]?</label>
+			<label kind="synchronisation" x="425" y="-93">deurGeopend[laag]?</label>
 			<nail x="510" y="-68"/>
 		</transition>
 		<transition id="id19">
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="synchronisation" x="238" y="-93">openDeur[0]!</label>
+			<label kind="synchronisation" x="238" y="-93">openDeur[laag]!</label>
 			<nail x="238" y="-68"/>
 		</transition>
 	</template>
