@@ -148,14 +148,68 @@ chan deurGesloten[sluisdeur_id];
 			<nail x="-238" y="-340"/>
 		</transition>
 	</template>
-	<system>system Controller,Deur;
+	<system>system sluis, sluisdeur;
 </system>
 	<queries>
 		<query>
 			<formula>A[] not deadlock</formula>
-			<comment/>
+			<comment>check for deadlock</comment>
 			<result outcome="success" type="quality" timestamp="2024-03-26 15:00:29 +0100">
 			</result>
+		</query>
+		<query>
+			<formula>A[] exists(i:sluisdeur_id) sluisdeur(i).gesloten</formula>
+			<comment>Er kan nooit een situatie ontstaan waarin niet ten minste één deur is gesloten.</comment>
+			<result outcome="success" type="quality" timestamp="2024-03-26 21:58:26 +0100">
+			</result>
+		</query>
+		<query>
+			<formula/>
+			<comment>Een deur kan nooit gesloten worden, als er een schip in de deuropening ligt.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Een deur kan nooit geopend worden, als het waterpeil aan beide kanten van de deur ongelijk is.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Het invaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het uitvaarsein op rood staat.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Er kan op elk gegeven moment slechts één sein op groen staan.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Als er schepen in de sluis liggen, heeft het uitvaarsein altijd voorrang op het invaarsein. Als alle schepen uit de sluis zijn gevaren, gaat het uitvaarsein uit en het invaarsein aan.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Als er geen schip in de sluis ligt, dan gaat het uitvaarsein niet aan, maar het invaarsein gaat aan.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>De sluis wordt maximaal gevuld, tot óf het maximaal aantal schepen in de sluis is bereikt óf er geen wachtende schepen meer zijn die naar binnen kunnen varen.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Als het maximaal aantal schepen in de sluis is bereikt of er zijn geen wachtende schepen meer, dan worden de deuren direct gesloten.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Nadat de deuren zijn gesloten, duurt het maximaal 1 minuut totdat de sluisluiken geopend worden.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Als het niveau aan beide kanten van de deuren gelijk is (na het openen van de luiken), duurt het maximaal 1 minuut tot de deuren geopend worden.</comment>
+		</query>
+		<query>
+			<formula/>
+			<comment>Als er deuren geopend zijn, duurt het maximaal 1 minuut tot ofwel het invaar- of uitvaarsein aan gaat.</comment>
 		</query>
 	</queries>
 </nta>
