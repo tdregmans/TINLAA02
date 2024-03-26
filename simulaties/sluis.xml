@@ -19,88 +19,88 @@ const int hoog = 1;</declaration>
 			<label kind="comments" x="221" y="93">Alles gesloten, 
 seinen op rood.</label>
 		</location>
-		<location id="id1" x="374" y="-68">
-			<name x="382" y="-110">deurLaagOpenend</name>
+		<location id="id1" x="510" y="-136">
+			<name x="518" y="-178">deurLaagOpenend</name>
 		</location>
-		<location id="id2" x="544" y="102">
-			<name x="552" y="68">klaarVoorSchipLaag</name>
+		<location id="id2" x="680" y="102">
+			<name x="688" y="68">klaarVoorSchipLaag</name>
 		</location>
-		<location id="id3" x="544" y="272">
-			<name x="552" y="238">deurLaagSluitend</name>
+		<location id="id3" x="680" y="340">
+			<name x="688" y="306">deurLaagSluitend</name>
 		</location>
-		<location id="id4" x="544" y="442">
-			<name x="552" y="408">klaarVoorBeweging</name>
+		<location id="id4" x="680" y="578">
+			<name x="688" y="544">klaarVoorBeweging</name>
 		</location>
-		<location id="id5" x="204" y="442">
-			<name x="212" y="399">sluiswaterInBeweging</name>
-			<label kind="invariant" x="212" y="416">w&lt;=10</label>
+		<location id="id5" x="204" y="578">
+			<name x="212" y="535">sluiswaterInBeweging</name>
+			<label kind="invariant" x="212" y="552">w&lt;=10</label>
 		</location>
-		<location id="id6" x="-136" y="442">
-			<name x="-127" y="408">klaarMetBeweging</name>
+		<location id="id6" x="-272" y="578">
+			<name x="-263" y="544">klaarMetBeweging</name>
 		</location>
-		<location id="id7" x="-136" y="272">
-			<name x="-127" y="238">deurHoogOpenend</name>
+		<location id="id7" x="-272" y="340">
+			<name x="-263" y="306">deurHoogOpenend</name>
 		</location>
-		<location id="id8" x="-136" y="102">
-			<name x="-127" y="68">klaarVoorSchipHoog</name>
+		<location id="id8" x="-272" y="102">
+			<name x="-263" y="68">klaarVoorSchipHoog</name>
 		</location>
-		<location id="id9" x="34" y="-68">
-			<name x="42" y="-110">deurHoogSluitend</name>
+		<location id="id9" x="-34" y="-136">
+			<name x="-26" y="-178">deurHoogSluitend</name>
 		</location>
 		<init ref="id0"/>
 		<transition id="id10">
 			<source ref="id9"/>
 			<target ref="id0"/>
-			<label kind="synchronisation" x="42" y="-93">deurGesloten[hoog]?</label>
-			<nail x="170" y="-68"/>
+			<label kind="synchronisation" x="42" y="-161">deurGesloten[hoog]?</label>
+			<nail x="102" y="-136"/>
 		</transition>
 		<transition id="id11">
 			<source ref="id8"/>
 			<target ref="id9"/>
-			<label kind="synchronisation" x="-136" y="-93">sluitDeur[hoog]!</label>
-			<nail x="-102" y="-68"/>
+			<label kind="synchronisation" x="-204" y="-161">sluitDeur[hoog]!</label>
+			<nail x="-238" y="-136"/>
 		</transition>
 		<transition id="id12">
 			<source ref="id7"/>
 			<target ref="id8"/>
-			<label kind="synchronisation" x="-127" y="161">deurGeopend[hoog]?</label>
+			<label kind="synchronisation" x="-263" y="229">deurGeopend[hoog]?</label>
 		</transition>
 		<transition id="id13">
 			<source ref="id6"/>
 			<target ref="id7"/>
-			<label kind="synchronisation" x="-127" y="331">openDeur[hoog]!</label>
+			<label kind="synchronisation" x="-263" y="467">openDeur[hoog]!</label>
 		</transition>
 		<transition id="id14">
 			<source ref="id5"/>
 			<target ref="id6"/>
-			<label kind="guard" x="17" y="416">w&gt;=10</label>
+			<label kind="guard" x="-51" y="552">w&gt;=10</label>
 		</transition>
 		<transition id="id15">
 			<source ref="id4"/>
 			<target ref="id5"/>
-			<label kind="assignment" x="365" y="416">w=0</label>
+			<label kind="assignment" x="501" y="552">w=0</label>
 		</transition>
 		<transition id="id16">
 			<source ref="id3"/>
 			<target ref="id4"/>
-			<label kind="synchronisation" x="552" y="331">deurGesloten[laag]?</label>
+			<label kind="synchronisation" x="688" y="467">deurGesloten[laag]?</label>
 		</transition>
 		<transition id="id17">
 			<source ref="id2"/>
 			<target ref="id3"/>
-			<label kind="synchronisation" x="552" y="161">sluitDeur[laag]!</label>
+			<label kind="synchronisation" x="688" y="229">sluitDeur[laag]!</label>
 		</transition>
 		<transition id="id18">
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="synchronisation" x="425" y="-93">deurGeopend[laag]?</label>
-			<nail x="510" y="-68"/>
+			<label kind="synchronisation" x="561" y="-161">deurGeopend[laag]?</label>
+			<nail x="646" y="-136"/>
 		</transition>
 		<transition id="id19">
 			<source ref="id0"/>
 			<target ref="id1"/>
-			<label kind="synchronisation" x="238" y="-93">openDeur[laag]!</label>
-			<nail x="238" y="-68"/>
+			<label kind="synchronisation" x="306" y="-161">openDeur[laag]!</label>
+			<nail x="306" y="-136"/>
 		</transition>
 	</template>
 	<template>
