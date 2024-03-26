@@ -297,7 +297,7 @@ x=0</label>
 		<query>
 			<formula>A[] not deadlock</formula>
 			<comment>check for deadlock</comment>
-			<result outcome="failure" type="quality" timestamp="2024-03-26 23:29:42 +0100">
+			<result outcome="success" type="quality" timestamp="2024-03-26 23:35:01 +0100">
 			</result>
 		</query>
 		<query>
