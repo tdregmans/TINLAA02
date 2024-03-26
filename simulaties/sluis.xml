@@ -360,8 +360,10 @@ x=0</label>
 			<comment>Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.</comment>
 		</query>
 		<query>
-			<formula/>
+			<formula>A[] (sum (i : vaarsein_id) vaarsein(i).rood) &lt;= 0</formula>
 			<comment>Er kan op elk gegeven moment slechts één sein op groen staan.</comment>
+			<result outcome="failure" type="quality" timestamp="2024-03-27 00:05:59 +0100">
+			</result>
 		</query>
 		<query>
 			<formula/>
@@ -388,7 +390,7 @@ x=0</label>
 			<comment>Als het niveau aan beide kanten van de deuren gelijk is (na het openen van de luiken), duurt het maximaal 1 minuut tot de deuren geopend worden.</comment>
 		</query>
 		<query>
-			<formula/>
+			<formula>A[] forall(i: sluisdeur_id) (sluisdeur(i).open --&gt; vaarsein(i).groen)</formula>
 			<comment>Als er deuren geopend zijn, duurt het maximaal 1 minuut tot ofwel het invaar- of uitvaarsein aan gaat.</comment>
 		</query>
 	</queries>
