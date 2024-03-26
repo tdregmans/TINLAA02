@@ -31,8 +31,9 @@ const int DELAY_DEURBEWEGING = 5;</declaration>
 bool reverse = false;</declaration>
 		<location id="id0" x="204" y="102">
 			<name x="204" y="119">start</name>
-			<label kind="comments" x="204" y="144">Alles gesloten, 
-seinen op rood.</label>
+			<label kind="comments" x="204" y="144">Alles gesloten,
+waterniveau = LAAG
+en seinen op rood.</label>
 		</location>
 		<location id="id1" x="442" y="-136">
 			<name x="450" y="-178">deurLaagOpenend</name>
@@ -81,21 +82,24 @@ seinen op rood.</label>
 		<transition id="id12">
 			<source ref="id4"/>
 			<target ref="id3"/>
-			<label kind="guard" x="501" y="425">reverse==true</label>
+			<label kind="guard" x="493" y="442">reverse==true</label>
+			<label kind="synchronisation" x="476" y="425">openDeur[LAAG]!</label>
 			<nail x="612" y="476"/>
 			<nail x="612" y="374"/>
 		</transition>
 		<transition id="id13">
 			<source ref="id7"/>
 			<target ref="id6"/>
-			<label kind="guard" x="-195" y="425">reverse==true</label>
+			<label kind="guard" x="-195" y="442">reverse==true</label>
+			<label kind="synchronisation" x="-195" y="425">deurGesloten[HOOG]?</label>
 			<nail x="-204" y="374"/>
 			<nail x="-204" y="476"/>
 		</transition>
 		<transition id="id14">
 			<source ref="id3"/>
 			<target ref="id2"/>
-			<label kind="guard" x="501" y="204">reverse==true</label>
+			<label kind="guard" x="493" y="204">reverse==true</label>
+			<label kind="synchronisation" x="450" y="187">deurGeopend[LAAG]?</label>
 			<nail x="612" y="306"/>
 			<nail x="612" y="136"/>
 		</transition>
@@ -103,34 +107,39 @@ seinen op rood.</label>
 			<source ref="id8"/>
 			<target ref="id7"/>
 			<label kind="guard" x="-195" y="204">reverse==true</label>
+			<label kind="synchronisation" x="-195" y="187">sluitDeur[HOOG]!</label>
 			<nail x="-204" y="136"/>
 			<nail x="-204" y="306"/>
 		</transition>
 		<transition id="id16">
 			<source ref="id2"/>
 			<target ref="id1"/>
-			<label kind="guard" x="484" y="76">reverse==true</label>
+			<label kind="guard" x="484" y="102">reverse==true</label>
+			<label kind="synchronisation" x="484" y="76">sluitDeur[LAAG]!</label>
 			<nail x="476" y="102"/>
 			<nail x="476" y="-102"/>
 		</transition>
 		<transition id="id17">
 			<source ref="id9"/>
 			<target ref="id8"/>
-			<label kind="guard" x="-178" y="76">reverse==true</label>
+			<label kind="guard" x="-187" y="102">reverse==true</label>
+			<label kind="synchronisation" x="-229" y="76">deurGeopend[HOOG]?</label>
 			<nail x="-68" y="-102"/>
 			<nail x="-68" y="102"/>
 		</transition>
 		<transition id="id18">
 			<source ref="id1"/>
 			<target ref="id0"/>
-			<label kind="guard" x="289" y="76">reverse==true</label>
+			<label kind="guard" x="289" y="102">reverse==true</label>
+			<label kind="synchronisation" x="238" y="76">deurGesloten[LAAG]?</label>
 			<nail x="408" y="-102"/>
 			<nail x="408" y="102"/>
 		</transition>
 		<transition id="id19">
 			<source ref="id0"/>
 			<target ref="id9"/>
-			<label kind="assignment" x="34" y="76">reverse=true</label>
+			<label kind="synchronisation" x="8" y="76">openDeur[HOOG]!</label>
+			<label kind="assignment" x="8" y="102">reverse=true</label>
 			<nail x="0" y="102"/>
 			<nail x="0" y="-102"/>
 		</transition>
