@@ -73,7 +73,9 @@ const int DELAY_DEURBEWEGING = 5;</declaration>
 		<name x="5" y="5">sluis</name>
 		<declaration>clock x;
 
-bool reverse = false;</declaration>
+bool reverse = false;
+
+int[LAAG,HOOG] waterniveau = LAAG;</declaration>
 		<location id="id4" x="204" y="102">
 			<name x="204" y="119">start</name>
 			<label kind="comments" x="204" y="144">Alles gesloten,
@@ -106,7 +108,7 @@ en seinen op rood.</label>
 			<name x="-433" y="68">klaarVoorSchipHoog</name>
 		</location>
 		<location id="id13" x="-34" y="-136">
-			<name x="-178" y="-170">deurHoogSluitend</name>
+			<name x="-178" y="-178">deurHoogSluitend</name>
 		</location>
 		<location id="id14" x="255" y="-17">
 			<label kind="invariant" x="246" y="42">x&lt;=0</label>
@@ -137,6 +139,7 @@ en seinen op rood.</label>
 			<target ref="id9"/>
 			<label kind="guard" x="0" y="654">reverse==true</label>
 			<label kind="synchronisation" x="0" y="637">openLuik[LAAG]!</label>
+			<label kind="assignment" x="0" y="680">waterniveau=LAAG</label>
 			<nail x="-68" y="680"/>
 			<nail x="170" y="680"/>
 		</transition>
@@ -152,6 +155,7 @@ en seinen op rood.</label>
 			<target ref="id9"/>
 			<label kind="guard" x="306" y="765">reverse==false</label>
 			<label kind="synchronisation" x="306" y="748">openLuik[HOOG]!</label>
+			<label kind="assignment" x="306" y="731">waterniveau=HOOG</label>
 		</transition>
 		<transition id="id22">
 			<source ref="id4"/>
@@ -405,7 +409,7 @@ x=0</label>
 		<query>
 			<formula>A[] not deadlock</formula>
 			<comment>check for deadlock</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-27 12:05:49 +0100">
+			<result outcome="success" type="quality" timestamp="2024-03-27 13:44:50 +0100">
 			</result>
 		</query>
 		<query>
@@ -419,8 +423,10 @@ x=0</label>
 			<comment>Een deur kan nooit gesloten worden, als er een schip in de deuropening ligt.</comment>
 		</query>
 		<query>
-			<formula/>
+			<formula>A[] (!sluisdeur(HOOG).gesloten imply sluis.waterniveau==HOOG) and (!sluisdeur(LAAG).gesloten imply sluis.waterniveau==LAAG)</formula>
 			<comment>Een deur kan nooit geopend worden, als het waterpeil aan beide kanten van de deur ongelijk is.</comment>
+			<result outcome="failure" type="quality" timestamp="2024-03-27 13:48:18 +0100">
+			</result>
 		</query>
 		<query>
 			<formula/>
