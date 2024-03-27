@@ -36,10 +36,13 @@ chan sluitLuik[sluisluik_id];
 const int LAAG = 0;
 const int HOOG = 1;
 
-// vaarsein_id 0: (LAAG, BINNEN)
-// vaarsein_id 1: (LAAG, BUITEN)
-// vaarsein_id 2: (HOOG, BINNEN)
-// vaarsein_id 3: (HOOG, BUITEN)
+const int BINNEN = 0;
+const int BUITEN = 1;
+
+// vaarsein_id 0: (LAAG*2 + BINNEN)
+// vaarsein_id 1: (LAAG*2 + BUITEN)
+// vaarsein_id 2: (HOOG*2 + BINNEN)
+// vaarsein_id 3: (HOOG*2 + BUITEN)
 
 // constante tijdsduur waterbeweging en deurbeweging
 const int DELAY_WATERBEWEGING = 10;
