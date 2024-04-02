@@ -221,7 +221,8 @@ int[LAAG,HOOG] waterniveau = LAAG;</declaration>
 		<transition id="id44">
 			<source ref="id37"/>
 			<target ref="id38"/>
-			<label kind="synchronisation" x="561" y="-637">schipGedetecteerd[LAAG]?</label>
+			<label kind="synchronisation" x="561" y="-646">schipGedetecteerd[LAAG]?</label>
+			<label kind="assignment" x="561" y="-629">schipInSluis=false</label>
 		</transition>
 		<transition id="id45">
 			<source ref="id36"/>
@@ -260,12 +261,13 @@ int[LAAG,HOOG] waterniveau = LAAG;</declaration>
 		<transition id="id51">
 			<source ref="id22"/>
 			<target ref="id23"/>
-			<label kind="synchronisation" x="-382" y="110">zetSeinOpRood[HOOG + BINNEN]!</label>
+			<label kind="synchronisation" x="-391" y="110">zetSeinOpRood[HOOG + BINNEN]!</label>
 		</transition>
 		<transition id="id52">
 			<source ref="id21"/>
 			<target ref="id22"/>
-			<label kind="synchronisation" x="-348" y="212">schipGedetecteerd[HOOG]?</label>
+			<label kind="synchronisation" x="-357" y="204">schipGedetecteerd[HOOG]?</label>
+			<label kind="assignment" x="-306" y="221">schipInSluis=false</label>
 		</transition>
 		<transition id="id53">
 			<source ref="id18"/>
@@ -286,9 +288,9 @@ int[LAAG,HOOG] waterniveau = LAAG;</declaration>
 		<transition id="id56">
 			<source ref="id4"/>
 			<target ref="id30"/>
-			<label kind="guard" x="59" y="-1037">waterniveau==HOOG</label>
-			<label kind="synchronisation" x="8" y="-1020">schipGedetecteerd[LAAG]?</label>
-			<label kind="assignment" x="169" y="-1054">x=0</label>
+			<label kind="guard" x="42" y="-1037">waterniveau==HOOG</label>
+			<label kind="synchronisation" x="-17" y="-1020">schipGedetecteerd[LAAG]?</label>
+			<label kind="assignment" x="161" y="-1054">x=0</label>
 			<nail x="204" y="-1054"/>
 		</transition>
 		<transition id="id57">
