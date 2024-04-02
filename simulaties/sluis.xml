@@ -78,401 +78,376 @@ const int DELAY_DEURBEWEGING = 5;</declaration>
 		<name x="5" y="5">sluis</name>
 		<declaration>clock x;
 
-bool reverse = false;
 bool schipInSluis = false;
 
 int[LAAG,HOOG] waterniveau = LAAG;</declaration>
-		<location id="id4" x="204" y="102">
-			<name x="221" y="119">start</name>
-			<label kind="comments" x="229" y="144">Alles gesloten,
-waterniveau = LAAG
-en seinen op rood.</label>
+		<location id="id4" x="238" y="-34">
+			<name x="238" y="-68">start</name>
 		</location>
-		<location id="id5" x="442" y="-136">
-			<name x="450" y="-187">deurLaagOpenend</name>
+		<location id="id5" x="544" y="-34">
+			<name x="569" y="-51">deurLaagOpenend</name>
 		</location>
-		<location id="id6" x="680" y="102">
-			<name x="688" y="68">klaarVoorSchipLaag</name>
+		<location id="id6" x="544" y="68">
+			<name x="569" y="51">klaarVoorSchipLaag</name>
 		</location>
-		<location id="id7" x="680" y="374">
-			<name x="697" y="365">deurLaagSluitend</name>
+		<location id="id7" x="544" y="476">
+			<name x="569" y="459">deurLaagSluitend</name>
 		</location>
-		<location id="id8" x="680" y="612">
-			<name x="680" y="629">klaarVoorBeweging</name>
+		<location id="id8" x="544" y="646">
+			<name x="569" y="629">klaarVoorBeweging</name>
 		</location>
 		<location id="id9" x="204" y="782">
-			<name x="204" y="824">sluiswaterInBeweging</name>
-			<label kind="invariant" x="204" y="841">x&lt;=DELAY_WATERBEWEGING</label>
+			<name x="204" y="731">sluiswaterInBeweging</name>
+			<label kind="invariant" x="204" y="748">x&lt;=DELAY_WATERBEWEGING</label>
 		</location>
-		<location id="id10" x="-272" y="612">
-			<name x="-416" y="629">klaarMetBeweging</name>
+		<location id="id10" x="-136" y="646">
+			<name x="-289" y="629">klaarMetBeweging</name>
 		</location>
-		<location id="id11" x="-272" y="374">
-			<name x="-408" y="340">deurHoogOpenend</name>
+		<location id="id11" x="-136" y="476">
+			<name x="-280" y="459">deurHoogOpenend</name>
 		</location>
-		<location id="id12" x="-272" y="102">
-			<name x="-442" y="85">klaarVoorSchipHoog</name>
+		<location id="id12" x="-136" y="374">
+			<name x="-306" y="357">klaarVoorSchipHoog</name>
 		</location>
-		<location id="id13" x="-34" y="-136">
-			<name x="-34" y="-187">deurHoogSluitend</name>
+		<location id="id13" x="136" y="-34">
+			<name x="-8" y="-68">deurHoogSluitend</name>
 		</location>
-		<location id="id14" x="255" y="-17">
-			<label kind="invariant" x="246" y="42">x&lt;=0</label>
+		<location id="id14" x="374" y="-34">
+			<name x="374" y="-76">schipLaagGedecteerd</name>
+			<label kind="invariant" x="382" y="-59">x&lt;=0</label>
 		</location>
-		<location id="id15" x="0" y="102">
-			<label kind="invariant" x="17" y="68">x&lt;=0</label>
-		</location>
-		<location id="id16" x="-102" y="782">
-			<name x="-102" y="824">luikSluiten</name>
+		<location id="id15" x="-102" y="782">
+			<name x="-204" y="790">luikSluiten</name>
 			<committed/>
 		</location>
-		<location id="id17" x="510" y="782">
-			<name x="518" y="824">luikOpenen</name>
+		<location id="id16" x="510" y="782">
+			<name x="518" y="790">luikOpenen</name>
 			<committed/>
 		</location>
-		<location id="id18" x="680" y="170">
-			<name x="697" y="161">invaarseinLaagOpGroen</name>
+		<location id="id17" x="544" y="170">
+			<name x="569" y="153">invaarseinLaagOpGroen</name>
 		</location>
-		<location id="id19" x="680" y="306">
-			<name x="697" y="297">sluitDeurLaag</name>
+		<location id="id18" x="544" y="374">
+			<name x="569" y="357">sluitDeurLaag</name>
+		</location>
+		<location id="id19" x="544" y="272">
+			<name x="569" y="255">invaarseinLaagOpRood</name>
+		</location>
+		<location id="id20" x="-136" y="272">
+			<name x="-306" y="255">uitvaarseinOpGroen</name>
+		</location>
+		<location id="id21" x="-136" y="170">
+			<name x="-297" y="153">uitvaarseinOpRood</name>
+		</location>
+		<location id="id22" x="-136" y="68">
+			<name x="-348" y="51">sluitDeurHoogNaUitvaart</name>
+		</location>
+		<location id="id23" x="-136" y="-476">
+			<name x="-314" y="-493">klaarVoorSchipHoog1</name>
+		</location>
+		<location id="id24" x="-136" y="-578">
+			<name x="-331" y="-595">invaarseinHoogOpGroen</name>
+		</location>
+		<location id="id25" x="-136" y="-680">
+			<name x="-323" y="-697">invaarseinHoogOpRood</name>
+		</location>
+		<location id="id26" x="-136" y="-782">
+			<name x="-263" y="-799">sluitDeurHoog</name>
+		</location>
+		<location id="id27" x="-136" y="-884">
+			<name x="-297" y="-901">deurHoogSluitend1</name>
+		</location>
+		<location id="id28" x="-136" y="-1054">
+			<name x="-306" y="-1071">klaarVoorBeweging1</name>
+		</location>
+		<location id="id29" x="-102" y="-1190">
+			<name x="-93" y="-1224">luikOpenen1</name>
 			<committed/>
 		</location>
-		<location id="id20" x="680" y="238">
-			<name x="697" y="229">invaarseinLaagOpRood</name>
+		<location id="id30" x="204" y="-1190">
+			<name x="212" y="-1241">sluiswaterInBeweging1</name>
+			<label kind="invariant" x="212" y="-1224">x&lt;=DELAY_WATERBEWEGING</label>
+		</location>
+		<location id="id31" x="510" y="-1190">
+			<name x="518" y="-1224">luikSluiten1</name>
 			<committed/>
 		</location>
-		<location id="id21" x="-263" y="34">
-			<name x="-442" y="17">uitvaarseinOpGroen</name>
+		<location id="id32" x="544" y="-1054">
+			<name x="569" y="-1071">klaarMetBewegen1</name>
 		</location>
-		<location id="id22" x="-255" y="-34">
-			<name x="-425" y="-51">uitvaarseinOpRood</name>
-			<committed/>
+		<location id="id33" x="544" y="-884">
+			<name x="569" y="-901">deurLaagopenend</name>
 		</location>
-		<location id="id23" x="-246" y="-102">
-			<name x="-476" y="-119">sluitDeurHoogNaUitvaart</name>
-			<committed/>
+		<location id="id34" x="544" y="-782">
+			<name x="561" y="-807">klaarVoorSchipLaag1</name>
 		</location>
-		<location id="id24" x="-204" y="170">
-			<name x="-187" y="161">invaarseinHoogOpGroen</name>
+		<location id="id35" x="544" y="-680">
+			<name x="561" y="-705">uitvaarseinOpGroen1</name>
 		</location>
-		<location id="id25" x="-204" y="238">
-			<name x="-187" y="229">invaarseinHoogOpRood</name>
-			<committed/>
+		<location id="id36" x="544" y="-578">
+			<name x="561" y="-603">uitvaarseinOpRood1</name>
 		</location>
-		<location id="id26" x="-204" y="306">
-			<name x="-187" y="297">sluitDeurHoogNaInvaart</name>
-			<committed/>
+		<location id="id37" x="544" y="-476">
+			<name x="561" y="-501">sluitDeurLaagNaUitvaart</name>
 		</location>
-		<location id="id27" x="510" y="-102">
-			<name x="382" y="-110">sluitDeurNaUitvaartReversed</name>
+		<location id="id38" x="986" y="-374">
+			<name x="1003" y="-399">deurLaagSluitend1</name>
 		</location>
-		<location id="id28" x="510" y="-34">
-			<name x="399" y="-59">uitvaartseinOpRoodReversed</name>
-			<committed/>
+		<location id="id39" x="-136" y="-34">
+			<name x="-280" y="-68">maakKlaarVoorLaag</name>
 		</location>
-		<location id="id29" x="510" y="34">
-			<name x="433" y="17">uitvaarseinOpGroenReversed</name>
+		<location id="id40" x="986" y="-476">
 		</location>
 		<init ref="id4"/>
-		<transition id="id30">
-			<source ref="id6"/>
-			<target ref="id5"/>
-			<label kind="guard" x="892" y="-136">schipInSluis==false &amp;&amp; reverse==true</label>
-			<label kind="synchronisation" x="892" y="-119">sluitDeur[LAAG]!</label>
-			<nail x="884" y="102"/>
-			<nail x="884" y="-170"/>
-			<nail x="510" y="-170"/>
-		</transition>
-		<transition id="id31">
-			<source ref="id28"/>
-			<target ref="id27"/>
-			<label kind="synchronisation" x="408" y="-76">zetSeinOpRood[LAAG + BINNEN]!</label>
-		</transition>
-		<transition id="id32">
-			<source ref="id29"/>
-			<target ref="id28"/>
-			<label kind="synchronisation" x="433" y="-8">schipGedetecteerd[LAAG]?</label>
-		</transition>
-		<transition id="id33">
-			<source ref="id6"/>
-			<target ref="id29"/>
-			<label kind="guard" x="476" y="59">reverse==true</label>
-			<label kind="synchronisation" x="416" y="76">zetSeinOpGroen[LAAG + BINNEN]!</label>
-			<nail x="510" y="102"/>
-		</transition>
-		<transition id="id34">
-			<source ref="id25"/>
-			<target ref="id26"/>
-			<label kind="synchronisation" x="-195" y="263">zetSeinOpRood[HOOG + BUITEN]!</label>
-		</transition>
-		<transition id="id35">
-			<source ref="id24"/>
-			<target ref="id25"/>
-			<label kind="synchronisation" x="-195" y="187">schipGedetecteerd[BINNEN]?</label>
-			<label kind="assignment" x="-195" y="204">schipInSluis=true</label>
-		</transition>
-		<transition id="id36">
-			<source ref="id12"/>
-			<target ref="id24"/>
-			<label kind="guard" x="-204" y="119">reverse==true</label>
-			<label kind="synchronisation" x="-272" y="136">zetSeinOpGroen[HOOG + BUITEN]!</label>
-			<nail x="-204" y="136"/>
-		</transition>
-		<transition id="id37">
-			<source ref="id12"/>
-			<target ref="id13"/>
-			<label kind="guard" x="-892" y="-153">schipInSluis==false &amp;&amp; reverse == false</label>
-			<label kind="synchronisation" x="-688" y="-136">sluitDeur[HOOG]!</label>
-			<nail x="-340" y="136"/>
-			<nail x="-544" y="136"/>
-			<nail x="-544" y="-170"/>
-			<nail x="-102" y="-170"/>
-		</transition>
-		<transition id="id38">
-			<source ref="id23"/>
-			<target ref="id13"/>
-			<label kind="synchronisation" x="-348" y="-161">sluitDeur[HOOG]!</label>
-			<nail x="-238" y="-136"/>
-		</transition>
-		<transition id="id39">
-			<source ref="id22"/>
-			<target ref="id23"/>
-			<label kind="synchronisation" x="-493" y="-85">zetSeinOpRood[HOOG + BINNEN]!</label>
-		</transition>
-		<transition id="id40">
-			<source ref="id21"/>
-			<target ref="id22"/>
-			<label kind="synchronisation" x="-459" y="-17">schipGedetecteerd[HOOG]?</label>
-		</transition>
 		<transition id="id41">
-			<source ref="id18"/>
-			<target ref="id20"/>
-			<label kind="synchronisation" x="688" y="187">schipGedetecteerd[BINNEN]?</label>
-			<label kind="assignment" x="688" y="204">schipInSluis=true</label>
+			<source ref="id37"/>
+			<target ref="id40"/>
+			<label kind="synchronisation" x="671" y="-476">schipGedetecteerd[HOOG]?</label>
 		</transition>
 		<transition id="id42">
-			<source ref="id20"/>
-			<target ref="id19"/>
-			<label kind="synchronisation" x="688" y="263">zetSeinOpRood[LAAG + BUITEN]!</label>
+			<source ref="id22"/>
+			<target ref="id39"/>
+			<label kind="synchronisation" x="-340" y="8">schipGedetecteerd[LAAG]?</label>
 		</transition>
 		<transition id="id43">
-			<source ref="id6"/>
-			<target ref="id18"/>
-			<label kind="guard" x="688" y="110">reverse==false</label>
-			<label kind="synchronisation" x="688" y="127">zetSeinOpGroen[LAAG + BUITEN]!</label>
+			<source ref="id37"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="603" y="-348">schipGedetecteerd[LAAG]?</label>
+			<nail x="545" y="-374"/>
+			<nail x="817" y="-374"/>
+			<nail x="817" y="68"/>
 		</transition>
 		<transition id="id44">
-			<source ref="id4"/>
-			<target ref="id10"/>
-			<label kind="guard" x="34" y="365">waterniveau==HOOG</label>
-			<label kind="synchronisation" x="-17" y="382">schipGedetecteerd[LAAG]?</label>
-			<label kind="assignment" x="144" y="348">x=0</label>
-			<nail x="170" y="578"/>
-			<nail x="-204" y="578"/>
+			<source ref="id22"/>
+			<target ref="id23"/>
+			<label kind="synchronisation" x="-365" y="-238">schipGedetecteerd[HOOG]?</label>
+			<nail x="-374" y="68"/>
+			<nail x="-374" y="-476"/>
 		</transition>
 		<transition id="id45">
-			<source ref="id9"/>
-			<target ref="id17"/>
-			<label kind="guard" x="306" y="688">reverse==true</label>
-			<label kind="synchronisation" x="306" y="671">sluitLuik[LAAG]!</label>
-			<label kind="assignment" x="306" y="714">x=0</label>
-			<nail x="238" y="714"/>
-			<nail x="476" y="714"/>
+			<source ref="id24"/>
+			<target ref="id25"/>
 		</transition>
 		<transition id="id46">
-			<source ref="id16"/>
-			<target ref="id9"/>
-			<label kind="guard" x="0" y="688">reverse==true</label>
-			<label kind="synchronisation" x="0" y="671">openLuik[LAAG]!</label>
-			<label kind="assignment" x="0" y="714">waterniveau=LAAG</label>
-			<nail x="-68" y="714"/>
-			<nail x="170" y="714"/>
+			<source ref="id34"/>
+			<target ref="id37"/>
+			<label kind="guard" x="357" y="-501">schipInSluis==false</label>
+			<nail x="340" y="-782"/>
+			<nail x="340" y="-476"/>
 		</transition>
 		<transition id="id47">
-			<source ref="id9"/>
-			<target ref="id16"/>
-			<label kind="guard" x="0" y="799">reverse==false</label>
-			<label kind="synchronisation" x="0" y="782">sluitLuik[HOOG]!</label>
-			<label kind="assignment" x="0" y="756">x=0</label>
+			<source ref="id36"/>
+			<target ref="id37"/>
+			<label kind="synchronisation" x="561" y="-535">zetSeinOpRood[LAAG + BINNEN]!</label>
 		</transition>
 		<transition id="id48">
-			<source ref="id17"/>
-			<target ref="id9"/>
-			<label kind="guard" x="306" y="799">reverse==false</label>
-			<label kind="synchronisation" x="306" y="782">openLuik[HOOG]!</label>
-			<label kind="assignment" x="306" y="765">waterniveau=HOOG</label>
+			<source ref="id35"/>
+			<target ref="id36"/>
+			<label kind="synchronisation" x="561" y="-646">schipGedetecteerd[LAAG]?</label>
+			<label kind="assignment" x="561" y="-629">schipInSluis=false</label>
 		</transition>
 		<transition id="id49">
-			<source ref="id4"/>
-			<target ref="id14"/>
-			<label kind="guard" x="246" y="0">waterniveau==LAAG</label>
-			<label kind="synchronisation" x="204" y="17">schipGedetecteerd[LAAG]?</label>
-			<label kind="assignment" x="246" y="25">x=0</label>
+			<source ref="id34"/>
+			<target ref="id35"/>
+			<label kind="synchronisation" x="561" y="-739">zetSeinOpGroen[LAAG + BINNEN]!</label>
 		</transition>
 		<transition id="id50">
-			<source ref="id4"/>
-			<target ref="id15"/>
-			<label kind="guard" x="34" y="119">waterniveau==HOOG</label>
-			<label kind="synchronisation" x="8" y="136">schipGedetecteerd[HOOG]?</label>
-			<label kind="assignment" x="34" y="102">x=0</label>
+			<source ref="id25"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-382" y="-739">zetSeinOpRood[HOOG + BUITEN]!</label>
 		</transition>
 		<transition id="id51">
-			<source ref="id17"/>
-			<target ref="id8"/>
-			<label kind="guard" x="416" y="620">reverse==true</label>
-			<nail x="544" y="612"/>
+			<source ref="id24"/>
+			<target ref="id25"/>
+			<label kind="synchronisation" x="-365" y="-646">schipGedetecteerd[BINNEN]?</label>
+			<label kind="assignment" x="-297" y="-629">schipInSluis=true</label>
 		</transition>
 		<transition id="id52">
-			<source ref="id10"/>
-			<target ref="id16"/>
-			<label kind="guard" x="-119" y="637">reverse==true</label>
-			<label kind="assignment" x="-119" y="620">x=0</label>
-			<nail x="-136" y="612"/>
+			<source ref="id23"/>
+			<target ref="id24"/>
+			<label kind="synchronisation" x="-399" y="-535">zetSeinOpGroen[HOOG + BUITEN]!</label>
 		</transition>
 		<transition id="id53">
-			<source ref="id8"/>
-			<target ref="id7"/>
-			<label kind="guard" x="493" y="476">reverse==true</label>
-			<label kind="synchronisation" x="476" y="459">openDeur[LAAG]!</label>
-			<nail x="612" y="510"/>
-			<nail x="612" y="408"/>
+			<source ref="id12"/>
+			<target ref="id22"/>
+			<label kind="guard" x="-102" y="68">schipInSluis==false</label>
+			<nail x="68" y="374"/>
+			<nail x="68" y="68"/>
 		</transition>
 		<transition id="id54">
-			<source ref="id11"/>
-			<target ref="id10"/>
-			<label kind="guard" x="-195" y="476">reverse==true</label>
-			<label kind="synchronisation" x="-195" y="459">deurGesloten[HOOG]?</label>
-			<nail x="-204" y="408"/>
-			<nail x="-204" y="510"/>
+			<source ref="id39"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="-68" y="-34">sluitDeur[HOOG]!</label>
 		</transition>
 		<transition id="id55">
-			<source ref="id7"/>
-			<target ref="id6"/>
-			<label kind="guard" x="493" y="204">reverse==true</label>
-			<label kind="synchronisation" x="450" y="187">deurGeopend[LAAG]?</label>
-			<nail x="612" y="340"/>
-			<nail x="612" y="136"/>
+			<source ref="id21"/>
+			<target ref="id22"/>
+			<label kind="synchronisation" x="-391" y="110">zetSeinOpRood[HOOG + BINNEN]!</label>
 		</transition>
 		<transition id="id56">
-			<source ref="id26"/>
-			<target ref="id11"/>
-			<label kind="synchronisation" x="-212" y="340">sluitDeur[HOOG]!</label>
-			<nail x="-204" y="340"/>
+			<source ref="id20"/>
+			<target ref="id21"/>
+			<label kind="synchronisation" x="-357" y="204">schipGedetecteerd[HOOG]?</label>
+			<label kind="assignment" x="-306" y="221">schipInSluis=false</label>
 		</transition>
 		<transition id="id57">
-			<source ref="id27"/>
-			<target ref="id5"/>
-			<label kind="synchronisation" x="459" y="-127">sluitDeur[LAAG]!</label>
-			<nail x="476" y="-102"/>
+			<source ref="id17"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="569" y="204">schipGedetecteerd[BINNEN]?</label>
+			<label kind="assignment" x="569" y="221">schipInSluis=true</label>
 		</transition>
 		<transition id="id58">
-			<source ref="id13"/>
-			<target ref="id12"/>
-			<label kind="guard" x="-187" y="68">reverse==true</label>
-			<label kind="synchronisation" x="-229" y="51">deurGeopend[HOOG]?</label>
-			<nail x="-68" y="-102"/>
-			<nail x="-68" y="102"/>
+			<source ref="id19"/>
+			<target ref="id18"/>
+			<label kind="synchronisation" x="569" y="314">zetSeinOpRood[LAAG + BUITEN]!</label>
 		</transition>
 		<transition id="id59">
-			<source ref="id5"/>
-			<target ref="id4"/>
-			<label kind="guard" x="289" y="102">reverse==true</label>
-			<label kind="synchronisation" x="238" y="76">deurGesloten[LAAG]?</label>
-			<nail x="408" y="-102"/>
-			<nail x="408" y="102"/>
+			<source ref="id6"/>
+			<target ref="id17"/>
+			<label kind="synchronisation" x="569" y="110">zetSeinOpGroen[LAAG + BUITEN]!</label>
 		</transition>
 		<transition id="id60">
-			<source ref="id15"/>
-			<target ref="id13"/>
-			<label kind="synchronisation" x="8" y="-17">openDeur[HOOG]!</label>
-			<label kind="assignment" x="8" y="0">reverse=true</label>
-			<nail x="0" y="-102"/>
+			<source ref="id30"/>
+			<target ref="id31"/>
+			<label kind="synchronisation" x="280" y="-1190">sluitLuik[LAAG]!</label>
+			<label kind="assignment" x="280" y="-1173">x=0</label>
 		</transition>
 		<transition id="id61">
-			<source ref="id13"/>
-			<target ref="id4"/>
-			<label kind="guard" x="-8" y="-136">reverse==false</label>
-			<label kind="synchronisation" x="-8" y="-161">deurGesloten[HOOG]?</label>
-			<nail x="102" y="-136"/>
+			<source ref="id29"/>
+			<target ref="id30"/>
+			<label kind="synchronisation" x="-17" y="-1190">openLuik[LAAG]!</label>
+			<label kind="assignment" x="-17" y="-1173">waterniveau=LAAG</label>
 		</transition>
 		<transition id="id62">
-			<source ref="id12"/>
-			<target ref="id21"/>
-			<label kind="guard" x="-391" y="42">reverse==false</label>
-			<label kind="synchronisation" x="-518" y="59">zetSeinOpGroen[HOOG + BINNEN]!</label>
+			<source ref="id9"/>
+			<target ref="id15"/>
+			<label kind="synchronisation" x="8" y="799">sluitLuik[HOOG]!</label>
+			<label kind="assignment" x="8" y="782">x=0</label>
 		</transition>
 		<transition id="id63">
-			<source ref="id11"/>
-			<target ref="id12"/>
-			<label kind="guard" x="-399" y="204">reverse==false</label>
-			<label kind="synchronisation" x="-433" y="187">deurGeopend[HOOG]?</label>
+			<source ref="id16"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="306" y="799">openLuik[HOOG]!</label>
+			<label kind="assignment" x="306" y="782">waterniveau=HOOG</label>
 		</transition>
 		<transition id="id64">
-			<source ref="id10"/>
-			<target ref="id11"/>
-			<label kind="guard" x="-399" y="476">reverse==false</label>
-			<label kind="synchronisation" x="-408" y="459">openDeur[HOOG]!</label>
+			<source ref="id4"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="212" y="-127">schipGedetecteerd[LAAG]?</label>
+			<label kind="assignment" x="280" y="-144">x=0</label>
+			<nail x="272" y="-102"/>
+			<nail x="340" y="-102"/>
 		</transition>
 		<transition id="id65">
-			<source ref="id16"/>
-			<target ref="id10"/>
-			<label kind="guard" x="-382" y="714">reverse==false</label>
-			<nail x="-238" y="782"/>
+			<source ref="id4"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="246" y="629">schipGedetecteerd[HOOG]?</label>
+			<label kind="assignment" x="246" y="646">x=0</label>
+			<nail x="238" y="680"/>
+			<nail x="442" y="680"/>
 		</transition>
 		<transition id="id66">
-			<source ref="id8"/>
-			<target ref="id17"/>
-			<label kind="guard" x="663" y="748">reverse==false</label>
-			<label kind="assignment" x="663" y="731">x=0</label>
-			<nail x="646" y="782"/>
+			<source ref="id31"/>
+			<target ref="id32"/>
 		</transition>
 		<transition id="id67">
-			<source ref="id7"/>
-			<target ref="id8"/>
-			<label kind="guard" x="688" y="476">reverse==false</label>
-			<label kind="synchronisation" x="688" y="459">deurGesloten[LAAG]?</label>
+			<source ref="id28"/>
+			<target ref="id29"/>
+			<label kind="assignment" x="-161" y="-1147">x=0</label>
 		</transition>
 		<transition id="id68">
-			<source ref="id19"/>
-			<target ref="id7"/>
-			<label kind="synchronisation" x="688" y="323">sluitDeur[LAAG]!</label>
+			<source ref="id32"/>
+			<target ref="id33"/>
+			<label kind="synchronisation" x="569" y="-977">openDeur[LAAG]!</label>
 		</transition>
 		<transition id="id69">
-			<source ref="id5"/>
-			<target ref="id6"/>
-			<label kind="guard" x="663" y="-68">reverse==false</label>
-			<label kind="synchronisation" x="663" y="-93">deurGeopend[LAAG]?</label>
-			<nail x="646" y="-136"/>
+			<source ref="id27"/>
+			<target ref="id28"/>
+			<label kind="synchronisation" x="-306" y="-977">deurGesloten[HOOG]?</label>
 		</transition>
 		<transition id="id70">
-			<source ref="id14"/>
-			<target ref="id5"/>
-			<label kind="synchronisation" x="306" y="-161">openDeur[LAAG]!</label>
-			<label kind="assignment" x="306" y="-136">reverse=false,
-x=0</label>
-			<nail x="306" y="-136"/>
+			<source ref="id33"/>
+			<target ref="id34"/>
+			<label kind="synchronisation" x="569" y="-841">deurGeopend[LAAG]?</label>
 		</transition>
 		<transition id="id71">
-			<source ref="id4"/>
+			<source ref="id26"/>
+			<target ref="id27"/>
+			<label kind="synchronisation" x="-280" y="-841">sluitDeur[HOOG]!</label>
+		</transition>
+		<transition id="id72">
+			<source ref="id40"/>
+			<target ref="id38"/>
+			<label kind="synchronisation" x="1003" y="-433">sluitDeur[LAAG]!</label>
+		</transition>
+		<transition id="id73">
+			<source ref="id38"/>
 			<target ref="id8"/>
-			<label kind="guard" x="238" y="365">waterniveau==LAAG</label>
-			<label kind="synchronisation" x="238" y="382">schipGedetecteerd[HOOG]?</label>
-			<label kind="assignment" x="238" y="348">x=0</label>
-			<nail x="238" y="578"/>
-			<nail x="612" y="578"/>
+			<label kind="synchronisation" x="807" y="620">deurGesloten[LAAG]?</label>
+			<nail x="986" y="646"/>
+		</transition>
+		<transition id="id74">
+			<source ref="id13"/>
+			<target ref="id28"/>
+			<label kind="synchronisation" x="-25" y="-1045">deurGesloten[HOOG]?</label>
+			<nail x="136" y="-1054"/>
+		</transition>
+		<transition id="id75">
+			<source ref="id12"/>
+			<target ref="id20"/>
+			<label kind="synchronisation" x="-399" y="314">zetSeinOpGroen[HOOG + BINNEN]!</label>
+		</transition>
+		<transition id="id76">
+			<source ref="id11"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-306" y="416">deurGeopend[HOOG]?</label>
+		</transition>
+		<transition id="id77">
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-280" y="552">openDeur[HOOG]!</label>
+		</transition>
+		<transition id="id78">
+			<source ref="id15"/>
+			<target ref="id10"/>
+		</transition>
+		<transition id="id79">
+			<source ref="id8"/>
+			<target ref="id16"/>
+			<label kind="assignment" x="544" y="705">x=0</label>
+		</transition>
+		<transition id="id80">
+			<source ref="id7"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="569" y="552">deurGesloten[LAAG]?</label>
+		</transition>
+		<transition id="id81">
+			<source ref="id18"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="569" y="416">sluitDeur[LAAG]!</label>
+		</transition>
+		<transition id="id82">
+			<source ref="id5"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="569" y="8">deurGeopend[LAAG]?</label>
+		</transition>
+		<transition id="id83">
+			<source ref="id14"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="391" y="-34">openDeur[LAAG]!</label>
 		</transition>
 	</template>
 	<template>
 		<name>schipsensor</name>
 		<parameter>schipsensor_id i</parameter>
 		<declaration>clock x;</declaration>
-		<location id="id72" x="0" y="0">
+		<location id="id84" x="0" y="0">
 			<name x="-59" y="-34">sensor</name>
 		</location>
-		<init ref="id72"/>
-		<transition id="id73">
-			<source ref="id72"/>
-			<target ref="id72"/>
+		<init ref="id84"/>
+		<transition id="id85">
+			<source ref="id84"/>
+			<target ref="id84"/>
 			<label kind="guard" x="76" y="8">x&gt;=1</label>
 			<label kind="synchronisation" x="76" y="-25">schipGedetecteerd[i]!</label>
 			<label kind="assignment" x="76" y="-8">x=0</label>
@@ -483,23 +458,23 @@ x=0</label>
 	<template>
 		<name>sluisluik</name>
 		<parameter>sluisluik_id i</parameter>
-		<location id="id74" x="0" y="0">
+		<location id="id86" x="0" y="0">
 			<name x="-85" y="-34">gesloten</name>
 		</location>
-		<location id="id75" x="170" y="0">
+		<location id="id87" x="170" y="0">
 			<name x="178" y="-34">geopend</name>
 		</location>
-		<init ref="id74"/>
-		<transition id="id76">
-			<source ref="id75"/>
-			<target ref="id74"/>
+		<init ref="id86"/>
+		<transition id="id88">
+			<source ref="id87"/>
+			<target ref="id86"/>
 			<label kind="synchronisation" x="34" y="76">sluitLuik[i]?</label>
 			<nail x="136" y="68"/>
 			<nail x="34" y="68"/>
 		</transition>
-		<transition id="id77">
-			<source ref="id74"/>
-			<target ref="id75"/>
+		<transition id="id89">
+			<source ref="id86"/>
+			<target ref="id87"/>
 			<label kind="synchronisation" x="34" y="-93">openLuik[i]?</label>
 			<nail x="34" y="-68"/>
 			<nail x="136" y="-68"/>
@@ -509,45 +484,45 @@ x=0</label>
 		<name>sluisdeur</name>
 		<parameter>sluisdeur_id i</parameter>
 		<declaration>clock x;</declaration>
-		<location id="id78" x="-272" y="-170">
+		<location id="id90" x="-272" y="-170">
 			<name x="-263" y="-204">gesloten</name>
 		</location>
-		<location id="id79" x="102" y="-170">
+		<location id="id91" x="102" y="-170">
 			<name x="102" y="-204">open</name>
 		</location>
-		<location id="id80" x="-68" y="-340">
+		<location id="id92" x="-68" y="-340">
 			<name x="-59" y="-382">aanHetOpenen</name>
 			<label kind="invariant" x="-59" y="-365">x&lt;=DELAY_DEURBEWEGING</label>
 		</location>
-		<location id="id81" x="-68" y="0">
+		<location id="id93" x="-68" y="0">
 			<name x="-59" y="8">aanHetSluiten</name>
 			<label kind="invariant" x="-59" y="25">x&lt;=DELAY_DEURBEWEGING</label>
 		</location>
-		<init ref="id78"/>
-		<transition id="id82">
-			<source ref="id81"/>
-			<target ref="id78"/>
+		<init ref="id90"/>
+		<transition id="id94">
+			<source ref="id93"/>
+			<target ref="id90"/>
 			<label kind="guard" x="-246" y="-68">x&gt;=DELAY_DEURBEWEGING</label>
 			<label kind="synchronisation" x="-246" y="-85">deurGesloten[i]!</label>
 			<nail x="-238" y="0"/>
 		</transition>
-		<transition id="id83">
-			<source ref="id79"/>
-			<target ref="id81"/>
+		<transition id="id95">
+			<source ref="id91"/>
+			<target ref="id93"/>
 			<label kind="synchronisation" x="93" y="-85">sluitDeur[i]?</label>
 			<label kind="assignment" x="93" y="-68">x=0</label>
 			<nail x="68" y="0"/>
 		</transition>
-		<transition id="id84">
-			<source ref="id80"/>
-			<target ref="id79"/>
+		<transition id="id96">
+			<source ref="id92"/>
+			<target ref="id91"/>
 			<label kind="guard" x="85" y="-306">x&gt;=DELAY_DEURBEWEGING</label>
 			<label kind="synchronisation" x="85" y="-323">deurGeopend[i]!</label>
 			<nail x="68" y="-340"/>
 		</transition>
-		<transition id="id85">
-			<source ref="id78"/>
-			<target ref="id80"/>
+		<transition id="id97">
+			<source ref="id90"/>
+			<target ref="id92"/>
 			<label kind="synchronisation" x="-238" y="-323">openDeur[i]?</label>
 			<label kind="assignment" x="-238" y="-306">x=0</label>
 			<nail x="-238" y="-340"/>
@@ -559,85 +534,85 @@ x=0</label>
 		<query>
 			<formula>A[] not deadlock</formula>
 			<comment>check for deadlock</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="success" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] exists(i:sluisdeur_id) sluisdeur(i).gesloten</formula>
 			<comment>Er kan nooit een situatie ontstaan waarin niet ten minste één deur is gesloten.</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="success" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] false</formula>
 			<comment>Een deur kan nooit gesloten worden, als er een schip in de deuropening ligt.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="failure" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (!sluisdeur(HOOG).gesloten imply sluis.waterniveau==HOOG) and (!sluisdeur(LAAG).gesloten imply sluis.waterniveau==LAAG)</formula>
 			<comment>Een deur kan nooit geopend worden, als het waterpeil aan beide kanten van de deur ongelijk is.</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="success" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (vaarsein(LAAG + BUITEN).groen imply (vaarsein(LAAG + BINNEN).rood &amp;&amp; sluisdeur(LAAG).open)) &amp;&amp; (vaarsein(HOOG + BUITEN).groen imply (vaarsein(HOOG + BINNEN).rood &amp;&amp; sluisdeur(HOOG).open))</formula>
 			<comment>Het invaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het uitvaarsein op rood staat.</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="success" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (vaarsein(LAAG + BINNEN).groen imply (vaarsein(LAAG + BUITEN).rood &amp;&amp; sluisdeur(LAAG).open)) &amp;&amp; (vaarsein(HOOG + BINNEN).groen imply (vaarsein(HOOG + BUITEN).rood &amp;&amp; sluisdeur(HOOG).open))</formula>
 			<comment>Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="success" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (sum (i : vaarsein_id) vaarsein(i).groen) &lt;= 1</formula>
 			<comment>Er kan op elk gegeven moment slechts één sein op groen staan.</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="success" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
-			<formula>A&lt;&gt; ((sluis.schipInSluis &amp;&amp; sluis.reverse == false) imply vaarsein(HOOG + BINNEN).groen) &amp;&amp; ((sluis.schipInSluis &amp;&amp; sluis.reverse == true) imply vaarsein(LAAG + BINNEN).groen)</formula>
+			<formula>A&lt;&gt; sluis.schipInSluis imply (vaarsein(HOOG + BINNEN).groen or vaarsein(LAAG + BINNEN).groen)</formula>
 			<comment>Als er schepen in de sluis liggen, heeft het uitvaarsein altijd voorrang op het invaarsein. Als alle schepen uit de sluis zijn gevaren, gaat het uitvaarsein uit en het invaarsein aan.</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="success" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] false</formula>
 			<comment>Als er geen schip in de sluis ligt, dan gaat het uitvaarsein niet aan, maar het invaarsein gaat aan.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="failure" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] false</formula>
 			<comment>De sluis wordt maximaal gevuld, tot óf het maximaal aantal schepen in de sluis is bereikt óf er geen wachtende schepen meer zijn die naar binnen kunnen varen.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="failure" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] false</formula>
 			<comment>Als het maximaal aantal schepen in de sluis is bereikt of er zijn geen wachtende schepen meer, dan worden de deuren direct gesloten.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="failure" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] false</formula>
 			<comment>Nadat de deuren zijn gesloten, duurt het maximaal 1 minuut totdat de sluisluiken geopend worden.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="failure" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] false</formula>
 			<comment>Als het niveau aan beide kanten van de deuren gelijk is (na het openen van de luiken), duurt het maximaal 1 minuut tot de deuren geopend worden.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="failure" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A&lt;&gt; forall(i: sluisdeur_id) (sluisdeur(i).open imply vaarsein(i + BUITEN).groen)</formula>
 			<comment>Als er deuren geopend zijn, duurt het maximaal 1 minuut tot ofwel het invaar- of uitvaarsein aan gaat.</comment>
-			<result outcome="success" type="quality" timestamp="2024-03-27 15:30:16 +0100">
+			<result outcome="success" type="quality" timestamp="2024-04-02 11:45:25 +0200">
 			</result>
 		</query>
 	</queries>
