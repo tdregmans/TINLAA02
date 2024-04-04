@@ -17,6 +17,7 @@
 \usepackage[many]{tcolorbox} % for COLORED BOXES (tikz and xcolor included)
 
 \usepackage{biblatex} %Imports biblatex package
+\usepackage{csquotes}
 \addbibresource{references.bib} %Import the bibliography file
 
 % definieer kleuren: {naam}{kleurstijl}{waardes}
@@ -143,7 +144,8 @@ Water verplaatsen van boven naar beneden is niet moeilijk. Water stroomt van nat
 
 \newpage
 \subsubsection{Flowchart werking sluis}
-\includegraphics[width=0.9\textwidth]{lockageprocess.png} \cite{flowchart1}
+Voor het ontwerpen van de sluis zal er gekeken moeten worden naar de vorige hoofdstukken. Voor een wat duidelijkeroverzicht is de volgende flowchart gevonden om als referentie te gebruiken voor het model. \par
+\includegraphics[width=0.9\textwidth]{lockageprocess.png} \\ \cite{flowchart1}
 \newpage
 
 \subsection{Onderdelen van een schutsluis}
@@ -159,17 +161,11 @@ De Grevelingensluis heeft een breedte van 16 meter en een lengte van 139 meter. 
 \subsection{Bediening van schutsluizen}
 Bedieningstijden zijn veelal online te vinden. Rijkswaterstaat heeft een speciale website met reguliere openingstijden. Daarnaast is het vaak mogelijk om buiten deze tijden een afspraak te maken voor gebruik maken van een sluis. Als voorbeeld, in de sluisplanning van de volkeraksluizen valt af te lezen dat het ongeveer 20 á 30 minuten duurt. \cite{vaarweginformatie, volkeraksluizen, SluisplanningVolkeraksluizen} \par 
 
-Wat betreft tijden, neemt fase 2 het grootste deel van de tijd in beslag. In een grote sluis zoals de Volkaraksluizen - waar jaarlijks zo’n 150.000 vrachtschepen passeren - worden in een paar minuten 900.000[note1] liters water verplaatst. \cite{WaterkaartVolkeraksluizen} Geschat wordt dat fase 2 zo’n 20 tot 25 minuten duurt, terwijl fase '1 en 3' 1 tot 3 minuten duren. \par
+Wat betreft tijden, neemt fase 2 het grootste deel van de tijd in beslag. In een grote sluis zoals de Volkaraksluizen - waar jaarlijks zo’n 150.000 vrachtschepen passeren - worden in een paar minuten bijna 900.000\footnote{De sluis is 16 meter breedte en 139 meter lang. Er is een hoogte verschil van 0.40 meter. 0.4 * 16 * 139 = 889 kubieke meter.} liters water verplaatst. \cite{WaterkaartVolkeraksluizen} Geschat wordt dat fase 2 zo’n 20 tot 25 minuten duurt, terwijl fase '1 en 3' 1 tot 3 minuten duren. \par
 
 Na aanleiding van deze analyse definiëren wij de requirements, in lijn met de eisen gesteld door de opdrachtgever. \par
 
-
-\begin{figure}[b]
-    Note1: De sluis is 16 meter breedte en 139 meter lang. Er is een hoogte verschil van 0.40 meter. 0.4 * 16 * 139 = 889 kubieke meter.
-\end{figure}
 \newpage
-
-
 
 
 %%%%% REQUIREMENTS
@@ -178,7 +174,6 @@ De opdrachtgever heeft gesteld dat het doel is om tot een model van een volledig
 \begin{enumerate}
     \item Veiligheid
     \item Efficientie
-    \item Capaciteit
     \item Duurzaamheid
 \end{enumerate}
 
@@ -192,27 +187,14 @@ We definiëren veiligheid als de afwezigheid van gevaar voor mens en bezit. De v
 \end{itemize}
 
 \subsection{Efficientie}
-Efficiëntie is de mate waarin de capaciteit maximaal benut wordt. Dit uit zich in:
+Efficiëntie is de manier waarop de sluis werkt tenopzichte van de locatie van schepen buiten de sluis. Dit uit zich in:
 \begin{itemize}
-    \item De hoeveelheid schepen die de sluis per uur kan verwerken.
-    \item Het aantal batches dat de sluis per uur kan verwerken.
+    \item Als een schip buiten de sluis gedetecteerd wordt waar de sluisdeur open gaat, zal de deur niet dicht moeten gaan om weer open te gaan voor dat schip.
+    \item In een situatie waar schepen aan beide kanten tegelijkertijd aankomen, zal het schip aan de kant van waterniveau voorrang krijgen op het schip aan de andere kant.
 \end{itemize}
 
-Om de efficiëntie te maximaliseren wordt door de sluis gekeken naar de grootte van de rijen van wachtende schepen. De sluis geeft voorrang aan de rij schepen aan de kant van de sluis waar de deur geopend is. \\
+Om de efficiëntie te maximaliseren wordt door de sluis gekeken naar wachtende schepen. De sluis geeft voorrang aan het schip aan de kant van de sluis waar de deur geopend is. Als een schip aan de kant waar het waterniveau ander is komt, zal de sluis dit schip voorrang geven. \\
 Om de efficiëntie verder te verhogen, neemt de sluis de kleinst mogelijke hoeveelheid tijd om zowel de deuren te openen, te sluiten en de schepen naar binnen en naar buiten te laten varen.
-
-
-\subsection{Capaciteit}
-De capaciteit van een sluis kan worden opgevat op verschillende manieren:
-\begin{itemize}
-    \item De maximale grootte van een schip dat door de sluis kan varen.
-    \item Het aantal schepen dat in een batch past.
-\end{itemize}
-
-Omdat de hoeveelheid schepen dat in een batch past, afhangt van de fysieke grootte van de sluis en de schepen, wordt de maximale grootte van de schepen buiten beschouwing gelaten. We maken deze keuze om een state-explosion te voorkomen.
-Voor de modelleren nemen we aan dat alle schepen even groot zijn, en daarom is de maximale hoeveelheid schepen per batch constant. De capaciteit is het aantal schepen per batch. \par
-Om de capaciteit te vergroten, probeert het model om de sluis zoveel als mogelijk schepen per batch te laten verwerken, tot de maximale capaciteit - aantal schepen per batch - is bereikt. \par
-\newpage
 
 \subsection{Duurzaamheid}
 Duurzaamheid is ‘een ontwikkeling die voorziet in de behoeften van de huidige generatie, zonder de behoeften van toekomstige generaties, zowel hier als in andere delen van de wereld, in gevaar te brengen’. \cite{CBSduurzaamheid} \par
@@ -230,10 +212,8 @@ Bovengenoemde eisen zijn omgezet in de volgende functionele requirements:
     \item Het invaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het uitvaarsein op rood staat.
     \item Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.
     \item Er kan op elk gegeven moment slechts één sein op groen staan.
-    \item Als er schepen in de sluis liggen, heeft het uitvaarsein altijd voorrang op het invaarsein. Als alle schepen uit de sluis zijn gevaren, gaat het uitvaarsein uit en het invaarsein aan.
+    \item Als er een schip in de sluis ligt, heeft het uitvaarsein altijd voorrang op het invaarsein. Als het schip uit de sluis is gevaren, gaat het uitvaarsein uit en het invaarsein aan.
     \item Als er geen schip in de sluis ligt, dan gaat het uitvaarsein niet aan, maar het invaarsein gaat aan.
-    \item De sluis wordt maximaal gevuld, tot óf het maximaal aantal schepen in de sluis is bereikt óf er geen wachtende schepen meer zijn die naar binnen kunnen varen.
-    \item Als het maximaal aantal schepen in de sluis is bereikt of er zijn geen wachtende schepen meer, dan worden de deuren direct gesloten.
     \item Nadat de deuren zijn gesloten, duurt het maximaal 1 minuut totdat de sluisluiken geopend worden.
     \item Als het niveau aan beide kanten van de deuren gelijk is (na het openen van de luiken), duurt het maximaal 1 minuut tot de deuren geopend worden.
     \item Als er deuren geopend zijn, duurt het maximaal 1 minuut tot ofwel het invaar- of uitvaarsein aan gaat.
@@ -242,6 +222,9 @@ Bovengenoemde eisen zijn omgezet in de volgende functionele requirements:
 
 %%%%% MODELEREN %%%%%
 \section{Modeleren}
+Iets over Vaandrager
+
+\subsection{}
 \newpage
 
 %%%%% VERIFICATIE %%%%%
