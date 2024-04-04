@@ -239,6 +239,7 @@ int[LAAG,HOOG] waterniveau = LAAG;</declaration>
 		<transition id="id44">
 			<source ref="id33"/>
 			<target ref="id34"/>
+			<label kind="guard" x="561" y="-756">schipInSluis==true</label>
 			<label kind="synchronisation" x="561" y="-739">zetSeinOpGroen[LAAG + BINNEN]!</label>
 		</transition>
 		<transition id="id45">
@@ -359,6 +360,7 @@ int[LAAG,HOOG] waterniveau = LAAG;</declaration>
 		<transition id="id66">
 			<source ref="id12"/>
 			<target ref="id19"/>
+			<label kind="guard" x="-297" y="93">schipInSluis==true</label>
 			<label kind="synchronisation" x="-399" y="76">zetSeinOpGroen[HOOG + BINNEN]!</label>
 		</transition>
 		<transition id="id67">
@@ -548,18 +550,6 @@ int[LAAG,HOOG] waterniveau = LAAG;</declaration>
 		<query>
 			<formula>A[] false</formula>
 			<comment>Als er geen schip in de sluis ligt, dan gaat het uitvaarsein niet aan, maar het invaarsein gaat aan.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-04-03 16:11:12 +0200">
-			</result>
-		</query>
-		<query>
-			<formula>A[] false</formula>
-			<comment>De sluis wordt maximaal gevuld, tot óf het maximaal aantal schepen in de sluis is bereikt óf er geen wachtende schepen meer zijn die naar binnen kunnen varen.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-04-03 16:11:12 +0200">
-			</result>
-		</query>
-		<query>
-			<formula>A[] false</formula>
-			<comment>Als het maximaal aantal schepen in de sluis is bereikt of er zijn geen wachtende schepen meer, dan worden de deuren direct gesloten.</comment>
 			<result outcome="failure" type="quality" timestamp="2024-04-03 16:11:12 +0200">
 			</result>
 		</query>
