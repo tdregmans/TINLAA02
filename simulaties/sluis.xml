@@ -16,6 +16,7 @@ const int AANTAL_SCHEEPSSENSOREN = 3;
 typedef int[0,AANTAL_SCHEEPSSENSOREN - 1] schipsensor_id;
 
 chan schipGedetecteerd[schipsensor_id];
+chan schipNietGedetecteerd[schipsensor_id];
 
 // vaarseinen
 const int AANTAL_VAARSEINEN = 4;
@@ -409,39 +410,53 @@ x=0</label>
 		<parameter>schipsensor_id i</parameter>
 		<declaration>clock x;</declaration>
 		<location id="id67" x="0" y="0">
-			<name x="-59" y="-34">sensor</name>
+			<name x="-59" y="-34">active</name>
+		</location>
+		<location id="id68" x="171" y="0">
+			<name x="170" y="-34">unactive</name>
 		</location>
 		<init ref="id67"/>
-		<transition id="id68">
-			<source ref="id67"/>
+		<transition id="id69">
+			<source ref="id68"/>
 			<target ref="id67"/>
-			<label kind="guard" x="76" y="8">x&gt;=1</label>
-			<label kind="synchronisation" x="76" y="-25">schipGedetecteerd[i]!</label>
-			<label kind="assignment" x="76" y="-8">x=0</label>
-			<nail x="68" y="-68"/>
-			<nail x="68" y="68"/>
+			<label kind="synchronisation" x="-17" y="76">schipNietGedectecteerd[i]!</label>
+			<nail x="136" y="68"/>
+			<nail x="34" y="68"/>
+		</transition>
+		<transition id="id70">
+			<source ref="id67"/>
+			<target ref="id68"/>
+			<label kind="synchronisation" x="0" y="-93">schipGedetecteerd[i]!</label>
+			<nail x="34" y="-68"/>
+			<nail x="136" y="-68"/>
 		</transition>
 	</template>
 	<template>
 		<name>sluisluik</name>
 		<parameter>sluisluik_id i</parameter>
-		<location id="id69" x="0" y="0">
+		<location id="id71" x="0" y="0">
 			<name x="-85" y="-34">gesloten</name>
 		</location>
-		<location id="id70" x="170" y="0">
+		<location id="id72" x="170" y="0">
 			<name x="178" y="-34">geopend</name>
 		</location>
-		<init ref="id69"/>
-		<transition id="id71">
-			<source ref="id70"/>
-			<target ref="id69"/>
+		<init ref="id71"/>
+		<transition id="id73">
+			<source ref="id72"/>
+			<target ref="id71"/>
+			<nail x="170" y="136"/>
+			<nail x="0" y="136"/>
+		</transition>
+		<transition id="id74">
+			<source ref="id72"/>
+			<target ref="id71"/>
 			<label kind="synchronisation" x="34" y="76">sluitLuik[i]?</label>
 			<nail x="136" y="68"/>
 			<nail x="34" y="68"/>
 		</transition>
-		<transition id="id72">
-			<source ref="id69"/>
-			<target ref="id70"/>
+		<transition id="id75">
+			<source ref="id71"/>
+			<target ref="id72"/>
 			<label kind="synchronisation" x="34" y="-93">openLuik[i]?</label>
 			<nail x="34" y="-68"/>
 			<nail x="136" y="-68"/>
@@ -451,45 +466,45 @@ x=0</label>
 		<name>sluisdeur</name>
 		<parameter>sluisdeur_id i</parameter>
 		<declaration>clock x;</declaration>
-		<location id="id73" x="-272" y="-170">
+		<location id="id76" x="-272" y="-170">
 			<name x="-263" y="-204">gesloten</name>
 		</location>
-		<location id="id74" x="102" y="-170">
+		<location id="id77" x="102" y="-170">
 			<name x="102" y="-204">open</name>
 		</location>
-		<location id="id75" x="-68" y="-340">
+		<location id="id78" x="-68" y="-340">
 			<name x="-59" y="-382">aanHetOpenen</name>
 			<label kind="invariant" x="-59" y="-365">x&lt;=DELAY_DEURBEWEGING</label>
 		</location>
-		<location id="id76" x="-68" y="0">
+		<location id="id79" x="-68" y="0">
 			<name x="-59" y="8">aanHetSluiten</name>
 			<label kind="invariant" x="-59" y="25">x&lt;=DELAY_DEURBEWEGING</label>
 		</location>
-		<init ref="id73"/>
-		<transition id="id77">
-			<source ref="id76"/>
-			<target ref="id73"/>
+		<init ref="id76"/>
+		<transition id="id80">
+			<source ref="id79"/>
+			<target ref="id76"/>
 			<label kind="guard" x="-246" y="-68">x&gt;=DELAY_DEURBEWEGING</label>
 			<label kind="synchronisation" x="-246" y="-85">deurGesloten[i]!</label>
 			<nail x="-238" y="0"/>
 		</transition>
-		<transition id="id78">
-			<source ref="id74"/>
-			<target ref="id76"/>
+		<transition id="id81">
+			<source ref="id77"/>
+			<target ref="id79"/>
 			<label kind="synchronisation" x="93" y="-85">sluitDeur[i]?</label>
 			<label kind="assignment" x="93" y="-68">x=0</label>
 			<nail x="68" y="0"/>
 		</transition>
-		<transition id="id79">
-			<source ref="id75"/>
-			<target ref="id74"/>
+		<transition id="id82">
+			<source ref="id78"/>
+			<target ref="id77"/>
 			<label kind="guard" x="85" y="-306">x&gt;=DELAY_DEURBEWEGING</label>
 			<label kind="synchronisation" x="85" y="-323">deurGeopend[i]!</label>
 			<nail x="68" y="-340"/>
 		</transition>
-		<transition id="id80">
-			<source ref="id73"/>
-			<target ref="id75"/>
+		<transition id="id83">
+			<source ref="id76"/>
+			<target ref="id78"/>
 			<label kind="synchronisation" x="-238" y="-323">openDeur[i]?</label>
 			<label kind="assignment" x="-238" y="-306">x=0</label>
 			<nail x="-238" y="-340"/>
@@ -501,55 +516,55 @@ x=0</label>
 		<query>
 			<formula>A[] not deadlock</formula>
 			<comment>check for deadlock</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:09:46 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-04 12:15:46 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] exists(i:sluisdeur_id) sluisdeur(i).gesloten</formula>
 			<comment>Er kan nooit een situatie ontstaan waarin niet ten minste één deur is gesloten.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:09:46 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-04 12:15:46 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (!sluisdeur(HOOG).gesloten imply sluis.waterniveau==HOOG) and (!sluisdeur(LAAG).gesloten imply sluis.waterniveau==LAAG)</formula>
 			<comment>Een deur kan nooit geopend worden, als het waterpeil aan beide kanten van de deur ongelijk is.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:09:46 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-04 12:15:46 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (vaarsein(LAAG + BUITEN).groen imply (vaarsein(LAAG + BINNEN).rood &amp;&amp; sluisdeur(LAAG).open)) &amp;&amp; (vaarsein(HOOG + BUITEN).groen imply (vaarsein(HOOG + BINNEN).rood &amp;&amp; sluisdeur(HOOG).open))</formula>
 			<comment>Het invaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het uitvaarsein op rood staat.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:09:46 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-04 12:15:46 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (vaarsein(LAAG + BINNEN).groen imply (vaarsein(LAAG + BUITEN).rood &amp;&amp; sluisdeur(LAAG).open)) &amp;&amp; (vaarsein(HOOG + BINNEN).groen imply (vaarsein(HOOG + BUITEN).rood &amp;&amp; sluisdeur(HOOG).open))</formula>
 			<comment>Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:09:46 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-04 12:15:46 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (sum (i : vaarsein_id) vaarsein(i).groen) &lt;= 1</formula>
 			<comment>Er kan op elk gegeven moment slechts één sein op groen staan.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:09:46 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-04 12:15:46 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>sluis.schipInSluis --&gt; (vaarsein(HOOG + BINNEN).groen or vaarsein(LAAG + BINNEN).groen)</formula>
 			<comment>Als er schepen in de sluis liggen, heeft het uitvaarsein altijd voorrang op het invaarsein. Als alle schepen uit de sluis zijn gevaren, gaat het uitvaarsein uit en het invaarsein aan.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:09:46 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-04 12:15:46 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>sluis.schipInSluis --&gt; (sluisdeur(HOOG).open or sluisdeur(LAAG).open)</formula>
 			<comment>Als er een schip in de sluis zit, zal er ergens een deur openen.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:09:46 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-04 12:15:46 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A&lt;&gt; forall(i: sluisdeur_id) (sluisdeur(i).open imply vaarsein(i + BUITEN).groen)</formula>
 			<comment>Als er deuren geopend zijn, duurt het maximaal 1 minuut tot ofwel het invaar- of uitvaarsein aan gaat.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:09:46 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-04 12:15:46 +0200">
 			</result>
 		</query>
 	</queries>
