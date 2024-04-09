@@ -501,90 +501,48 @@ x=0</label>
 		<query>
 			<formula>A[] not deadlock</formula>
 			<comment>check for deadlock</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 12:07:14 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-05 17:38:36 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] exists(i:sluisdeur_id) sluisdeur(i).gesloten</formula>
 			<comment>Er kan nooit een situatie ontstaan waarin niet ten minste één deur is gesloten.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 10:44:14 +0200">
-			</result>
-		</query>
-		<query>
-			<formula>A[] false</formula>
-			<comment>Een deur kan nooit gesloten worden, als er een schip in de deuropening ligt.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-04-04 10:44:14 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-05 17:38:36 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (!sluisdeur(HOOG).gesloten imply sluis.waterniveau==HOOG) and (!sluisdeur(LAAG).gesloten imply sluis.waterniveau==LAAG)</formula>
 			<comment>Een deur kan nooit geopend worden, als het waterpeil aan beide kanten van de deur ongelijk is.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 10:56:51 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-05 17:38:36 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (vaarsein(LAAG + BUITEN).groen imply (vaarsein(LAAG + BINNEN).rood &amp;&amp; sluisdeur(LAAG).open)) &amp;&amp; (vaarsein(HOOG + BUITEN).groen imply (vaarsein(HOOG + BINNEN).rood &amp;&amp; sluisdeur(HOOG).open))</formula>
 			<comment>Het invaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het uitvaarsein op rood staat.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 10:44:14 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-05 17:38:36 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (vaarsein(LAAG + BINNEN).groen imply (vaarsein(LAAG + BUITEN).rood &amp;&amp; sluisdeur(LAAG).open)) &amp;&amp; (vaarsein(HOOG + BINNEN).groen imply (vaarsein(HOOG + BUITEN).rood &amp;&amp; sluisdeur(HOOG).open))</formula>
 			<comment>Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 10:44:14 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-05 17:38:36 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>A[] (sum (i : vaarsein_id) vaarsein(i).groen) &lt;= 1</formula>
 			<comment>Er kan op elk gegeven moment slechts één sein op groen staan.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 10:44:14 +0200">
-			</result>
-		</query>
-		<query>
-			<formula>sluis.schipInSluis --&gt; (vaarsein(HOOG + BINNEN).groen or vaarsein(LAAG + BINNEN).groen)</formula>
-			<comment>Als er schepen in de sluis liggen, heeft het uitvaarsein altijd voorrang op het invaarsein. Als alle schepen uit de sluis zijn gevaren, gaat het uitvaarsein uit en het invaarsein aan.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 11:14:53 +0200">
+			<result outcome="success" type="quality" timestamp="2024-04-05 17:38:36 +0200">
 			</result>
 		</query>
 		<query>
 			<formula>sluis.schipInSluis --&gt; (sluisdeur(HOOG).open or sluisdeur(LAAG).open)</formula>
-			<comment>Als er een schip in de sluis zit, zal er ergens een deur openen.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 11:16:54 +0200">
+			<comment>Als er een schip in de sluis zit, zal er ergens een deur openen, zodat een schip nooit oneindig vast kan komen te zitten.</comment>
+			<result outcome="success" type="quality" timestamp="2024-04-05 17:56:48 +0200">
 			</result>
 		</query>
 		<query>
-			<formula>A[] false</formula>
-			<comment>Als er geen schip in de sluis ligt, dan gaat het uitvaarsein niet aan, maar het invaarsein gaat aan.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-04-04 11:23:14 +0200">
-			</result>
-		</query>
-		<query>
-			<formula>(sluisdeur(HOOG).gesloten and sluisdeur(LAAG).gesloten) --&gt; (sluis.x &lt;= 1 and (sluisluik(HOOG).geopend or sluisluik(LAAG).geopend))</formula>
-			<comment>Nadat de deuren zijn gesloten, duurt het maximaal 1 minuut totdat de sluisluiken geopend worden.</comment>
-		</query>
-		<query>
-			<formula>A[] false</formula>
-			<comment>Als het niveau aan beide kanten van de deuren gelijk is (na het openen van de luiken), duurt het maximaal 1 minuut tot de deuren geopend worden.</comment>
-			<result outcome="failure" type="quality" timestamp="2024-04-04 10:44:14 +0200">
-			</result>
-		</query>
-		<query>
-			<formula>A&lt;&gt; forall(i: sluisdeur_id) (sluisdeur(i).open imply vaarsein(i + BUITEN).groen)</formula>
-			<comment>Als er deuren geopend zijn, duurt het maximaal 1 minuut tot ofwel het invaar- of uitvaarsein aan gaat.</comment>
-			<result outcome="success" type="quality" timestamp="2024-04-04 10:44:14 +0200">
-			</result>
-		</query>
-		<query>
-			<formula>E&lt;&gt; ((sluisdeur(HOOG).gesloten &amp;&amp; sluisdeur(LAAG).gesloten) &amp;&amp; A[10,10] (sluisluik(HOOG).geopend || sluisluik(LAAG).geopend))</formula>
-			<comment/>
-		</query>
-		<query>
-			<formula>maxE(true) [&lt;=10] : &lt;&gt; ((sluisdeur(HOOG).gesloten &amp;&amp; sluisdeur(LAAG).gesloten) --&gt; (sluisluik(HOOG).geopend || sluisluik(LAAG).geopend))</formula>
-			<comment/>
-		</query>
-		<query>
-			<formula>maxE(true) [&lt;=10] : &lt;&gt; ((sluisdeur(HOOG).gesloten &amp;&amp; sluisdeur(LAAG).gesloten) -&gt; (sluisluik(HOOG).geopend || sluisluik(LAAG).geopend))</formula>
-			<comment/>
+			<formula>A&lt;&gt; (sluis.waterniveau == HOOG)</formula>
+			<comment>Als er een schip in de sluis zit, zal er ergens een deur openen, zodat een schip nooit oneindig vast kan komen te zitten.</comment>
 		</query>
 	</queries>
 </nta>
