@@ -16,9 +16,6 @@
 \usepackage{ulem} % package om zinnen door te strepen met \sout{}
 \usepackage[many]{tcolorbox} % for COLORED BOXES (tikz and xcolor included)
 
-\usepackage[sorting=none, style=nature]{biblatex} %Imports biblatex package
-\usepackage{csquotes}
-\addbibresource{references.bib} %Import the bibliography file
 
 % definieer kleuren: {naam}{kleurstijl}{waardes}
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -158,7 +155,7 @@ Een eenvoudige schutsluis bestaat uit enkele onderdelen:
 \end{enumerate}
 De Grevelingensluis heeft een breedte van 16 meter en een lengte van 139 meter. Er mogen schepen in die minder dan 110 meter lang zijn. Dit wordt ook wel de \textbf{‘schutlengte’} genoemd. \cite{WaterkaartGrevelingensluis}
 
-\subsection{Bediening van schutsluizen}
+\subsection{Bediening van schutsluizen} \label{paragraaf 1.6}
 Bedieningstijden zijn veelal online te vinden. Rijkswaterstaat heeft een speciale website met reguliere openingstijden. Daarnaast is het vaak mogelijk om buiten deze tijden een afspraak te maken voor gebruik maken van een sluis. Als voorbeeld, in de sluisplanning van de volkeraksluizen valt af te lezen dat het ongeveer 20 á 30 minuten duurt. \cite{vaarweginformatie, volkeraksluizen, SluisplanningVolkeraksluizen} \par 
 
 Wat betreft tijden, neemt fase 2 het grootste deel van de tijd in beslag. In een grote sluis zoals de Volkaraksluizen - waar jaarlijks zo’n 150.000 vrachtschepen passeren - worden in een paar minuten bijna 900.000\footnote{De sluis is 16 meter breedte en 139 meter lang. Er is een hoogte verschil van 0.40 meter. 0.4 * 16 * 139 = 889 kubieke meter.} liters water verplaatst. \cite{WaterkaartVolkeraksluizen} Geschat wordt dat fase 2 zo’n 20 tot 25 minuten duurt, terwijl fase '1 en 3' 1 tot 3 minuten duren. \par
@@ -168,13 +165,45 @@ Na aanleiding van deze analyse definiëren wij de requirements, in lijn met de e
 \newpage
 
 %%%%% REQUIREMENTS
+%%%%% REQUIREMENTS
 \section{Requirements}
-De opdrachtgever heeft gesteld dat het doel is om tot een model van een volledig automatische sluis te komen. Hierbij wordt gehoopt op een verbetering in:
+Op basis van het literatuuronderzoek over sluizen zijn er aantal functionele eisen gespecificeerd doormiddel van brainstormen. Allereerst lag de focus op functionele requirements. In de eerste instantie waren deze eisen het resultaat:
+\begin{itemize}
+    \item De sluis moet schepen kunnen laten passeren tussen wateren met verschillende waterniveaus.
+    \item De deuren en luiken van de sluis moeten waterdicht kunnen afsluiten.
+    \item De sluis moet voorzien zijn van noodvoorziening voor het openen van de deuren in het geval van wegvalling van stroom.
+    \item De sluis moet voorzien zijn van verlichting zodat deze 's nachts ook te gebruiken is.
+    \item De sluis moet meerdere schepen achter elkaar vervoeren.
+    \item De sluis moet meerdere kleinere schepen in een keer kunnen vervoeren.
+    \item De sluis moet autonomoon werken.
+\end{itemize}
+
+Echter is later de keuze gemaakt om aantal van deze requirements weg te laten. De reden hiertoe was dat sommige functionele requirements buiten de scope vielen, of irrelevant waren voor de werking van het model, of het model te complex zouden maken, waardoor verificatie niet meer mogelijk was. Hieruit kwamen de volgende keuzes:
+
+\begin{itemize}
+    \item Het model wordt gemaakt met de aanname dat de sluisdeuren en luiken waterdicht zijn.
+    \item De noodvoorziening wordt buiten beschouwing gelaten, aangezien dit buiten de scope valt.
+    \item De nachtverlichting wordt buiten beschouwing gelaten, aangezien dit buiten de scope valt.
+    \item Om de complexiteit van het model te verminderen en het verificatieproces te versnellen, gaat de sluis maar één enkel schip kunnen vervoeren.
+\end{itemize}
+
+Op basis van deze keuzes zijn de volgende functionele eisen opgesteld die gerealiseerd kunnen worden:
+
+\begin{itemize}
+    \item De sluis moet schepen kunnen laten passeren tussen wateren met verschillende waterniveaus.
+    \item De sluis moet meerdere schepen achter elkaar vervoeren
+    \item De sluis moet autonomoon werken.
+\end{itemize}
+
+Nadat er primitieve functionele requirements bedacht waren, is er gekeken naar de brief van de opdrachtgever. De opdrachtgever heeft gesteld dat het doel is om tot een model van een volledig automatische sluis te komen. Hierbij wordt gehoopt op een verbetering in:
 \begin{enumerate}
     \item Veiligheid
     \item Efficientie
     \item Duurzaamheid
 \end{enumerate}
+
+Op basis van deze drie criteria worden er in dit hoofdstuk nog meer functionele en non-functionele requirements gespecificeerd.
+\newpage
 
 \subsection{Veiligheid}
 We definiëren veiligheid als de afwezigheid van gevaar voor mens en bezit. De volgende situaties zijn gevaarlijk voor mens en/of bezit:
@@ -190,12 +219,18 @@ Efficiëntie is de manier waarop de sluis werkt tenopzichte van de locatie van s
 \begin{itemize}
     \item Als een schip buiten de sluis gedetecteerd wordt waar de sluisdeur open gaat, zal de deur niet dicht moeten gaan om weer open te gaan voor dat schip.
     \item In een situatie waar schepen aan beide kanten tegelijkertijd aankomen, zal het schip aan de kant van waterniveau voorrang krijgen op het schip aan de andere kant.
+    \item Als er deuren geopend zijn, duurt het maximaal 1 minuut tot ofwel het invaar- of uitvaarsein aan gaat.
+    \item Als het niveau aan beide kanten van de een deur gelijk is (na het openen van de luiken), duurt het maximaal 1 minuut tot de deuren geopend worden.
+    \item Nadat de deuren zijn gesloten, duurt het maximaal 1 minuut totdat de sluisluiken geopend worden.
+
 \end{itemize}
 
 Om de efficiëntie te maximaliseren wordt door de sluis gekeken naar wachtende schepen. De sluis geeft voorrang aan het schip aan de kant van de sluis waar de deur geopend is. Als een schip aan de kant waar het waterniveau ander is komt, zal de sluis dit schip voorrang geven. \\
 Om de efficiëntie verder te verhogen, neemt de sluis de kleinst mogelijke hoeveelheid tijd om zowel de deuren te openen, te sluiten en de schepen naar binnen en naar buiten te laten varen.
 
-\subsection{Duurzaamheid}
+\newpage
+
+\subsection{Duurzaamheid} \label{paragraaf 2.3}
 Duurzaamheid is ‘een ontwikkeling die voorziet in de behoeften van de huidige generatie, zonder de behoeften van toekomstige generaties, zowel hier als in andere delen van de wereld, in gevaar te brengen’. \cite{CBSduurzaamheid} \par
 
 Dit heeft betrekking op de materiaalkeuze tijdens de bouw van de sluis. Omdat het model slechts een symbolische representatie van de sluis is, kan geen invloed worden uitgeoefend op de materialen. Daarom laten we de materiaalkeuze buiten beschouwing. \\
@@ -203,17 +238,25 @@ Een verbeterde duurzaamheid kan ook opgevat worden als het gebruik van een minim
 Hoewel dit geen invloed heeft op het model, kunnen we energie besparen door pompen te vervangen door sluisluiken.
 \newpage
 
-
-\subsection{Functionele requirements}
-Bovengenoemde eisen zijn omgezet in de volgende functionele requirements:
+\subsection{Requirement specificatie} \label{paragraaf 2.4}
+Door al de voorheen genoemde eisen te combineren, is het gelukt een definitieve lijst op te stellen van functionele en non-functionele requirements. Met deze requirements specificatie zal rekening gehouden worden bij het maken en testen van het model. 
 \begin{enumerate}
-    \item Er kan nooit een situatie ontstaan waarin niet ten minste één deur is gesloten.
-    \item Een deur kan nooit gesloten worden, als er een schip in de deuropening ligt.
-    \item Een deur kan nooit geopend worden, als het waterpeil aan beide kanten van de deur ongelijk is.
-    \item Het invaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het uitvaarsein op rood staat.
-    \item Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.
-    \item Er kan op elk gegeven moment slechts één sein op groen staan.
-    \item Als er een schip in de sluis zit, zal er ergens een deur openen, zodat een schip nooit oneindig vast kan komen te zitten.
+    \item R1 - De sluis moet schepen kunnen laten passeren tussen wateren met verschillende waterniveaus.
+    \item R2 - De sluis moet meerdere schepen achter elkaar vervoeren
+    \item R3 - De sluis moet autonomoon werken.
+    \item R4 - Minstens één van de twee deuren moet ten alle tijden gesloten zijn.
+    \item R5 - Een deur kan nooit gesloten worden, als er een schip in de deuropening ligt.
+    \item R6 - Een deur kan nooit geopend worden, als het waterpeil aan beide kanten van de deur ongelijk is.
+    \item R7 - Het invaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het uitvaarsein op rood staat.
+    \item R8 - Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.
+    \item R9 - Er kan op elk gegeven moment slechts één sein op groen staan.
+    \item R10 - Een schip kan nooit (bij normale werking) vast komen te zitten in een sluis.
+    \item R11 - Als een schip buiten de sluis gedetecteerd wordt waar de sluisdeur open gaat, zal de deur niet dicht moeten gaan om weer open te gaan voor dat schip.
+    \item R12 - In een situatie waar schepen aan beide kanten tegelijkertijd aankomen, zal het schip aan de kant van waterniveau voorrang krijgen op het schip aan de andere kant.
+    \item R13 - Als er deuren geopend zijn, duurt het maximaal 1 minuut tot ofwel het invaar- of uitvaarsein aan gaat.
+    \item R14 - Als het niveau aan beide kanten van de een deur gelijk is (na het openen van de luiken), duurt het maximaal 1 minuut tot de deuren geopend worden.
+    \item R15 - Nadat de deuren zijn gesloten, duurt het maximaal 1 minuut totdat de sluisluiken geopend worden.
+    \item R16 - Er zijn seinen aanwezig om te voorkomen dat schepen tegen elkaar of tegen de sluis aan varen.
 \end{enumerate}
 \newpage
 
@@ -231,6 +274,7 @@ Uit het verslag van Frits Vaandrager is af te leiden dat goede modellen bouwen e
     \item Een goed model moet eenvoudig zijn, maar niet te eenvoudig. Mensen houden over het algemeen wel van eenvoud.Dit moet niet ten koste gaan van de functionaliteit van het model. 
     \item Een goed model moet de mogelijkheid bieden voor uitbreiding en hergebruik. Het moet ontworpen zijn met het oog op evolutie, omdat technologie voortdurend vooruitgang boekt.
     \item Een goed model moet goed kunnen integreren met andere modellen, omdat projecten vaak uit verschillende onderdelen bestaan die meerdere modellen vereisen.
+
 
 \end{itemize}
 De modelcriteria van Vaandrager zijn vaak tegenstrijdig, omdat het ene criterium van een model vaak ten koste gaat van het andere criterium. Een voorbeeld hiervan is dat het streven naar eenvoud in een model de traceerbaarheid ervan kan verminderen. Het eenvoudig repliceren van het object kan de complexiteit van het model vergroten en de eenvoudigheid dus verminderen.
@@ -257,20 +301,20 @@ Een sluisdeur heeft 4 states:
 
 \begin{itemize}
     \item 'gesloten' \\
-        Dit is de intial state. In deze state is de deur gesloten. Er is een transitie mogelijk naar 'aanHetOpenen'.
+    Dit is de intial state. In deze state is de deur gesloten. Er is een transitie mogelijk naar 'aanHetOpenen'.
     \item 'aanHetOpenen' \\
-        De transitie naar deze state wordt gesynchroniseerd met de Sluis controller. De clock wordt gereset, in de transitie. In deze state zijn de deuren aan het openen. Het openen van de deur kost 2 minuten. (Zie paragraaf 1.6) Met Guards en een Invariant, wordt dit bereikt.
+    De transitie naar deze state wordt gesynchroniseerd met de Sluis controller. De clock wordt gereset, in de transitie. In deze state zijn de deuren aan het openen. Het openen van de deur kost 2 minuten. (Zie \ref{paragraaf 1.6}) Met Guards en een Invariant, wordt dit bereikt.
     \item 'open' \\
-        De transitie naar deze state wordt weer gesynchroniseerd met de Sluis controller. In deze state kan een schip naar binnen of naar buiten varen. Wanneer de Sluis controller dat besluit, wordt een transitie genomen naar 'aanHetSluiten'.
+    De transitie naar deze state wordt weer gesynchroniseerd met de Sluis controller. In deze state kan een schip naar binnen of naar buiten varen. Wanneer de Sluis controller dat besluit, wordt een transitie genomen naar 'aanHetSluiten'.
     \item 'aanHetSluiten' \\
-        In deze state is de sluisdeur aan het sluiten. Dit kost opnieuw weer 2 minuten. Na 2 minuten (in het model) wordt een transitie genomen naar 'gesloten' -- de initial state. Ook deze transitie is gesynchroniseerd met de Sluis controller, zodat de controller zeker weet dat de deur daadwerkelijk gesloten is, voordat het bijvoorbeeld de luiken opent. 
+    In deze state is de sluisdeur aan het sluiten. Dit kost opnieuw weer 2 minuten. Na 2 minuten (in het model) wordt een transitie genomen naar 'gesloten' -- de initial state. Ook deze transitie is gesynchroniseerd met de Sluis controller, zodat de controller zeker weet dat de deur daadwerkelijk gesloten is, voordat het bijvoorbeeld de luiken opent. 
     
 \end{itemize}
 
 \begin{figure}[h]
-\includegraphics[width=5cm]{sluisdeur.png}
-\centering    
-\caption{sluisdeur}
+    \includegraphics[width=5cm]{sluisdeur.png}
+    \centering    
+    \caption{sluisdeur}
 \end{figure}
 % Import image, give figure no. and center image
 
@@ -280,33 +324,31 @@ De gemodeleerde sluis bevat twee sluisdeuren -- één aan de 'hoge' kant en éé
 \newpage
 
 \subsubsection{Sluisluik}
-
-In het kader van duurzaamheid is gekozen voor een set van luiken in plaats van pompen. (Zie paragraaf 2.3) Ook deze zijn -- net al de deuren -- geparameteriseerd. \\
+In het kader van duurzaamheid is gekozen voor een set van luiken in plaats van pompen. (Zie \ref{paragraaf 2.3}) Ook deze zijn -- net als de deuren -- geparameteriseerd. \par
 Een sluisluik heeft twee states:
 
 \begin{itemize}
     \item 'gesloten' \\
-        Dit is de intial state. In deze state is het luik gesloten. Er is een transitie mogelijk naar 'geopend'. Deze transitie wordt gesynchroniseerd met de Sluis controller.
+    Dit is de intial state. In deze state is het luik gesloten. Er is een transitie mogelijk naar 'geopend'. Deze transitie wordt gesynchroniseerd met de Sluis controller.
     \item 'geopend' \\
-        In deze state is het luik geopend. Er is een transitie mogelijk naar 'gesloten'. Deze transitie wordt gesynchroniseerd met de Sluis controller.
+    In deze state is het luik geopend. Er is een transitie mogelijk naar 'gesloten'. Deze transitie wordt gesynchroniseerd met de Sluis controller.
 \end{itemize}
 
 \begin{figure}[h]
-\includegraphics[width=5cm]{sluisluik.png}
-\centering    
-\caption{sluisluik}
+    \includegraphics[width=5cm]{sluisluik.png}
+    \centering    
+    \caption{sluisluik}
 \end{figure}
-% Import image, give figure no. and center image
 
-In de sluisdeuren is gekozen voor een extra twee states voor het 'aanHetOpenen' en 'aanHetSluiten' van de deuren. Hoewel dit is ook mogelijk is voor de luiken, is de conclusie getrokken dat dit minder waarde heeft. Ten eerste, omdat als gekozen zou worden voor twee extra states, de duur van het openen en sluiten betrekkelijk laag is. Denk aan bijvoorbeeld 0,5 minuten. Daarnaast is het voor het model minder relevant, om de tijdsduur van het openen en sluiten van de luiken mee te nemen. Om het overzichtelijk te houden, blijft het bij twee states. \\
+
+In de sluisdeuren is gekozen voor een extra twee states voor het 'aanHetOpenen' en 'aanHetSluiten' van de deuren. Hoewel dit is ook mogelijk is voor de luiken, is de conclusie getrokken dat dit minder waarde heeft. Ten eerste, omdat als gekozen zou worden voor twee extra states, de duur van het openen en sluiten betrekkelijk laag is. Denk aan bijvoorbeeld 0,5 minuten. Daarnaast is het voor het model minder relevant, om de tijdsduur van het openen en sluiten van de luiken mee te nemen. Een goed model is eenvoudig, dus om het model overzichtelijk te houden laten we het aantal states op 2. \\
 In ons model hoort bij elke deur, een luik. Omdat de deuren geparameteriseerd zijn, zijn de luiken op zo'n zelfde manier geparameteriseerd.
 
 \subsubsection{Scheepssensor}
-
 \begin{figure}[h]
-\includegraphics[width=5cm]{schipsensor.png}
-\centering    
-\caption{schipsensor}
+    \includegraphics[width=5cm]{schipsensor.png}
+    \centering    
+    \caption{schipsensor}
 \end{figure}
 % Import image, give figure no. and center image
 
@@ -322,9 +364,9 @@ Er zijn in het model dus twee deuren en twee luiken. Om de sluis te automatisere
 Een vaarsein kan op 'rood' of op 'groen' staan. Met de kanalen 'zetSeinOpGroen' en 'zetSeinOpRood' zijn de twee transities gesynchroniseerd met de Sluis controller.
 
 \begin{figure}[h]
-\includegraphics[width=4cm]{vaarsein.png}
-\centering    
-\caption{vaarsein}
+    \includegraphics[width=4cm]{vaarsein.png}
+    \centering    
+    \caption{vaarsein}
 \end{figure}
 % Import image, give figure no. and center image
 
@@ -346,9 +388,9 @@ De states zijn in clusters in te delen:
 \end{itemize}
 
 \begin{figure}[h]
-\includegraphics[width=\linewidth]{sluis.png}
-\centering    
-\caption{Sluis (controller)}
+    \includegraphics[width=\linewidth]{sluis.png}
+    \centering    
+    \caption{Sluis (controller)}
 \end{figure}
 % Import image, give figure no. and center image
 
@@ -375,15 +417,59 @@ Er zijn een aantal states waarin het model wacht op input van sensoren:
 In deze states is het model in een 'idle' state waarin het model schepen zowel hoog als laag kan detecteren. Enkel het schip wat als eerst wordt gedetecteerd, wordt gezien. Als de sluis eenmaal in bedrijf is, en het water is aan het stijgen, dan is de sluis 'blind'. Het luistert niet naar de sensoren. Door de manier waarop de sensoren zijn gebouwd -- met één state -- is er ook geen geheugen mogelijk. Een detectie is een edge die \(dx=0\) duurt. \\
 Door deze beperking is het niet mogelijk om meerdere schepen in overweging mee te nemen. We versimpelen ons model tot één enkel schip per cyclus.
 
+\subsection{Changelog model}
+Voor het model in Uppaal zijn meerdere malen aanpassingen gedaan. Dit hoofdstuk geeft een beknopte weergave welke aanpassingen gedaan zijn in de desbetreffende versie ten opzichte van het vorige. \par
+\begin{tabular}{|p{0.15\textwidth}|p{0.1\textwidth}|p{0.65\textwidth}|}
+    \hline
+    Datum & Versie & Aanpassing \\
+    \hline
+    12-03-2024 & v1 & Eerste sluis model (bevat enkel een 'sluis' template)\\
+    \hline
+    26-03-2024 & v2 & Begin opnieuw na opgedane kennis in de les. Start met enkele lus met één beweging van de 'sluis' en 'sluisdeur'.\\
+    \hline
+    26-03-2024 & v3 & Voeg een dubbele/binnenste lus toe aan model om de 'omgekeerde' beweging -- van HOOG naar LAAG -- mogelijk te maken. Voeg 'schipsensor' toe.\\
+    \hline
+    27-03-2024 & v4 & Voeg 'vaarsein' template toe, zonder deze te gebruiken in 'sluis'.\\
+    \hline
+    27-03-2024 & v5 & Voeg 'sluisluik' toe. Implementeer 'sluisluik' om waterniveau te veranderen. Voeg extra transities toe om vanuit 'start' naar 'klaarVoorBewegen' en 'klaarMetBewegen' te gaan om een schip dat aan de zijde waar het water niet op de juiste hoogte zit, te behandelen.\\
+    \hline
+    27-03-2024 & v6 & Implementeer gebruik van 'vaarsein' in 'sluis' template.\\
+    \hline
+    02-04-2024 & v7 & Na feedback in de les, de dubbele lus verwijderd, samen met alle guards. Een tweede lus ter vervanging toegevoegd.\\
+    \hline
+    02-04-2024 & v8 & Fix een aantal problemen: Reset clock op de juiste plaats, verander de initial state, fix de bug die zorgt dat de schipInSluis-variabele nooit 'false' wordt en stop dat de deuren sluiten en daarna direct weer openen.\\
+    \hline
+    04-04-2024 & v9 & Kleine wijzingen  doorgevoerd met betrekking tot efficientie en voorkomen van onnodige states. Fix een bug die zorgde dat een sein op groen kan staan zonder dat er een schip in de sluis zit. Voeg DELAY\_VEILIGHEID toe van 1 minuut tussen sein verandering en deur openen of sluiten.\\
+    \hline
+    00-00-2024 & v10 & Werk aan de verificatie van requirements en verwijder een aantal onnodige states.\\
+    \hline
+\end{tabular}
+
 \newpage
 
 %%%%% VERIFICATIE %%%%%
 \section{Verificatie}
 
-Met behulp van de Uppaal tool, konden de meeste requirements geverifeerd worden. (Zie paragraaf 2.4)
+Met behulp van de Uppaal tool, konden de meeste requirements geverifeerd worden. (Zie \ref{paragraaf 2.4})
 
-\subsection{Er kan nooit een situatie ontstaan waarin niet ten minste één deur is gesloten.}
+\subsection{R1, R2, R3 \& R16}
+\begin{itemize}
+    \item \textbf{R1 - De sluis moet schepen kunnen laten passeren tussen wateren met verschillende waterniveaus.}
+    \item \textbf{R2 - De sluis moet meerdere schepen achter elkaar vervoeren.}
+    \item \textbf{R3 - De sluis moet autonomoon werken.}
+    \item \textbf{R16 - Er zijn seinen aanwezig om te voorkomen dat schepen tegen elkaar of tegen de sluis aan varen.}
+\end{itemize}
 
+Al deze eisen zijn te verifiëren door het model te bekijken. De eisen gaan over aspecten die aanwezig moeten zijn of dingen die het model moet kunnen doen. 
+\begin{itemize}
+    \item De sluis is in staat om een heel rondje te voltooien; er kunnen schepen passeren tussen wateren met verschillende waterniveaus.
+    \item De werking van de sluis is in een ideale wereld oneindig. Tijdens het verifiëren is uitgegaan van deze ideale wereld; de sluis is in staat meerdere schepen achter elkaar te vervoeren.
+    \item De sluis is in staat autonoom te werken. Door de sensoren en actuatoren is dit gerealiseerd.
+    \item Één van de modellen is een vaarsein die meerdere malen worden gebruikt in de controller van de sluis; er zijn vaarseinen aanwezig.
+\end{itemize}
+
+\subsection{R4}
+\textbf{Minstens één van de twee deuren moet ten alle tijden gesloten zijn.} \\
 Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 
 \begin{boxA}
@@ -392,8 +478,8 @@ Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 
 Uppaal heeft geverifeerd dat het systeem voldoet aan deze requirement.
 
-\subsection{Een deur kan nooit gesloten worden, als er een schip in de deuropening ligt.}
-
+\subsection{R5}
+\textbf{Een deur kan nooit gesloten worden, als er een schip in de deuropening ligt.} \\
 Door de manier waarop het model is opgebouwd, kan deze requirement niet expliciet bewezen worden. Er kan wel gesteld worden dat dit impliciet bewezen wordt. \\
 Immers, als de sensor BINNEN getriggerd wordt, dan gaat het model er vanuit dat het schip de sluis volledig is binnen gevaren. \\
 Hierbij horen de volgende impliciete aannames:
@@ -402,9 +488,10 @@ Hierbij horen de volgende impliciete aannames:
     \item Als het schip de sensor BINNEN triggert, is het voorbij de deur gevaren.
     \item Er is dan geen ander object dat de sensor kan triggeren, dan het schip.
 \end{itemize}
+\newpage
 
-\subsection{Een deur kan nooit geopend worden, als het waterpeil aan beide kanten van de deur ongelijk is.}
-
+\subsection{R6}
+\textbf{Een deur kan nooit geopend worden, als het waterpeil aan beide kanten van de deur ongelijk is. } \\
 Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 
 \begin{boxA}
@@ -413,8 +500,8 @@ Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 
 Uppaal heeft geverifeerd dat het systeem voldoet aan deze requirement.
 
-\subsection{Het invaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het uitvaarsein op rood staat.}
-
+\subsection{R7}
+\textbf{Het invaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het uitvaarsein op rood staat.} \\
 Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 
 \begin{boxA}
@@ -422,21 +509,18 @@ Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 \end{boxA}
 
 Uppaal heeft geverifeerd dat het systeem voldoet aan deze requirement.
-\newpage
 
-\subsection{Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.}
-
+\subsection{R8}
+\textbf{Het uitvaarsein mag enkel en alleen op groen staan, als de bijbehorende deur geopend is en het invaarsein op rood staat.} \\
 Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
-
 \begin{boxA}
     $A[]$ $(vaarsein(LAAG + BINNEN).groen$ $imply$ $(vaarsein(LAAG + BUITEN).rood$ \\ $ \&\&$ $sluisdeur(LAAG).open)) \\ \&\& $ $(vaarsein(HOOG + BINNEN).groen$ $imply$ $(vaarsein(HOOG + BUITEN).rood \\ \&\&$ $sluisdeur(HOOG).open))$
 \end{boxA}
-
-
 Uppaal heeft geverifeerd dat het systeem voldoet aan deze requirement.
+\newpage
 
-\subsection{Er kan op elk gegeven moment slechts één sein op groen staan.}
-
+\subsection{R9}
+\textbf{Er kan op elk gegeven moment slechts één sein op groen staan.} \\
 Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 
 \begin{boxA}
@@ -445,8 +529,8 @@ Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 
 Uppaal heeft geverifeerd dat het systeem voldoet aan deze requirement.
 
-\subsection{Als er een schip in de sluis zit, zal er ergens een deur openen, zodat een schip nooit oneindig vast kan komen te zitten.}
-
+\subsection{R10}
+\textbf{Een schip kan nooit (bij normale werking) vast komen te zitten in een sluis.} \\
 Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 
 \begin{boxA}
@@ -455,8 +539,46 @@ Deze requirement is in Uppaal geverifeerd met de volgende CTL query:
 
 Uppaal heeft geverifeerd dat het systeem voldoet aan deze requirement.
 
-\subsection{Deadlock}
 
+\subsection{R11}
+\textbf{ls een schip buiten de sluis gedetecteerd wordt waar de sluisdeur open gaat, zal de deur niet dicht moeten gaan om weer open te gaan voor dat schip.} \\
+De requirement is te verifiëren door te kijken naar het model in Uppaal. In figuur \ref{r11} is een gedeelte van het model te zien waar een splitsing naar verschillende states genomen kan worden, afhankelijk van waar een schip gedetecteerd is. Als we onder beginnen in de state '\textit{hoogWachten}', kan er een transitie genomen worden de state '\textit{klaarVoorSchipHoog1}' als een schip op hetzelfde waterniveau wordt gedetecteerd. De sluisdeuren gaan pas dicht als dit schip is ingevaren. \par
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{R11.png}
+    \caption{R11 transitie}
+    \label{r11}
+\end{figure}
+\newpage
+
+\subsection{R12}
+\textbf{In een situatie waar schepen aan beide kanten tegelijkertijd
+aankomen, zal het schip aan de kant van waterniveau voorrang krijgen
+op het schip aan de andere kant.} \\
+In het model is het niet mogelijk dat 2 schepen tegelijkertijd aan kunnen komen. Deze eis is daarom niet te verifiëren. \par
+
+\textcolor{red}{ADVIES}: Om aan het model aan deze requirement te laten voldoen kan er gekeken worden naar de manier hoe schepen aan kunnen komen. Dit kan bijvoorbeeld gedaan worden door een \textit{queue} te maken of een aanpassing te doen aan de \textit{schipsensoren}.
+
+\subsection{R13 \& R15}
+\textbf{R13 - Als er deuren geopend zijn, duurt het maximaal 1 minuut tot ofwel het invaar- of uitvaarsein aan gaat.} \\
+\textbf{R15 - Nadat de deuren zijn gesloten, duurt het maximaal 1 minuut totdat de sluisluiken geopend worden.} \par
+
+Het model voldoet niet aan deze eisen, aangezien in zowel de \textit{luiken} als \textit{vaarseinen} geen \textbf{klokken} aanwezig zijn. De luiken springen meteen open of dicht en de vaarseinen gaan meteen van groen naar rood en vice versa. Hierdoor is er geen idee van tijd in het model voor deze aspecten.
+
+\textcolor{red}{ADVIES}: Voor het vervolg is het mogelijk om te kijken een klok te verwerken in zowel de sluisluiken als de vaarseinen. Hierdoor kan er acurater gekeken worden naar de cyclustijd van de sluis en het model te voldoen aan deze eis. \par
+
+\subsection{R14}
+\textbf{Als het niveau aan beide kanten van de een deur gelijk is (na het openen van de luiken), duurt het maximaal 1 minuut tot de deuren geopend worden.}\\
+In figuur \ref{r14} is het model van de sluisdeur te zien. In de states '\textit{aanHetOpenen}' en '\textit{aanHetSluiten}' zijn de invarianten '\textit{DELAY\_DEURBEWEGING}' toegevoegd. Deze is gelijk aan 1. In ons model is de waarde 1 voor een klock gelijk aan 1 minuut, wat betekend dat openen en sluiten van een deur 1 minuut duurt. \par
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{R14.png}
+    \caption{R14 clock}
+    \label{r14}
+\end{figure}
+\newpage
+
+\subsection{Deadlock}
 Hoewel dit geen requirement is, is het weldegelijk van belang dat het systeem deadlock-vrij is. Daarom wordt dit ook geverifeerd met de volgende formule:
 
 \begin{boxA}
@@ -468,5 +590,8 @@ Uppaal heeft geverifeerd dat het systeem voldoet aan deze requirement.
 \newpage
 
 %%%%% BRONNEN %%%%%
-\printbibliography
+
+\bibliographystyle{plain}
+\bibliography{references}
+
 \end{document}
