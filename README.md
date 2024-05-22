@@ -11,7 +11,7 @@ TINLAB: Advanced Algorithms
 
 ## Verslag
 
-De repository bevat de bron bestanden waaruit het verslag opgebouwd kan worden. Zie [/verslag](./verslag/verslag.tex).
+De repository bevat de bron bestanden waaruit het verslag opgebouwd kan worden. Zie [/verslag](./verslag/main.tex).
 
 ## Uppaal
 
